@@ -1,5 +1,6 @@
 * text=auto eol=lf
-*.json -text
+# Preserve fingerprinted experiment JSON bytes, including Windows line endings.
+*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 *.png -text
 *.pkl -text
 *.npz -text

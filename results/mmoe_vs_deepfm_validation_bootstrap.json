@@ -1,0 +1,14 @@
+{
+  "metric": "primary_logloss_candidate_minus_baseline",
+  "delta": -0.0009850687654434612,
+  "ci95": [
+    -0.0013432855836985685,
+    -0.0006214342984376244
+  ],
+  "users": 23858,
+  "rows": 161956,
+  "resamples": 2000,
+  "seed": 2026,
+  "lower_is_better": true,
+  "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+}

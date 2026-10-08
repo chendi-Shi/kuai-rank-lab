@@ -224,3 +224,16 @@ def test_capacity_matched_baseline_controls_total_parameter_budget():
     candidate_count = sum(p.numel() for p in candidate.parameters())
     assert candidate_count == parameter_budget(sizes, n_numeric, "mmoe", dim, hidden, experts)
     assert abs(baseline_count - candidate_count) / candidate_count < .01
+
+
+def test_small_and_bulk_encoding_paths_have_identical_unknown_and_numeric_semantics():
+    encoder = FeatureEncoder(["cat"], ["num"]).fit(pd.DataFrame({"cat": ["a", "b"], "num": [1., 3.]}))
+    small = pd.DataFrame({"cat": ["a", "c", "b"], "num": [1., 2., 3.]})
+    large = pd.concat([small] * 1500, ignore_index=True)
+    cats, nums = encoder.transform(small)
+    large_cats, large_nums = encoder.transform(large)
+    np.testing.assert_array_equal(cats[:, 0], [1, 0, 2])
+    np.testing.assert_array_equal(nums[:, 0], [-1., 0., 1.])
+    np.testing.assert_array_equal(large_cats, np.tile(cats, (1500, 1)))
+    np.testing.assert_array_equal(large_nums, np.tile(nums, (1500, 1)))
+    assert encoder.unknown_rates(small) == encoder.unknown_rates(large) == {"cat": 1 / 3}

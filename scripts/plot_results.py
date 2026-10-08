@@ -38,7 +38,8 @@ if __name__ == "__main__":
     ax.set_xlabel("Primary-task ROC AUC (long_view)")
     ax.set_title("Date-aligned policy evaluation: Apr 26-30, 2022")
     ax.grid(axis="x", alpha=.2)
-    ax.legend(loc="lower left")
+    ax.legend(loc="upper center", bbox_to_anchor=(.5, 1.20), ncol=2, fontsize=9)
+    ax.title.set_y(1.18)
     fig.text(.02, .01, "Fixed 250k training exposures. Neural models: 3 seeds. Error bars are seed SD, not confidence intervals.", fontsize=8)
     fig.tight_layout(rect=[0, .045, 1, 1])
     fig.savefig(out / "policy_auc.png", dpi=180)
@@ -50,6 +51,7 @@ if __name__ == "__main__":
         means = [np.mean([v["valid_primary_logloss"] for r in selected for v in r["curves"] if v["epoch"] == epoch]) for epoch in epochs]
         ax.plot(epochs, means, marker="o", label=labels[model])
     ax.set_xlabel("Training epoch")
+    ax.set_xticks(epochs)
     ax.set_ylabel("Validation primary LogLoss (lower is better)")
     ax.set_title("Early-stopping diagnostics on real exposure logs")
     ax.grid(alpha=.2)

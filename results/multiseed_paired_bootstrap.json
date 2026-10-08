@@ -1,0 +1,107 @@
+{
+  "split": "valid",
+  "rows": [
+    {
+      "baseline": "deepfm",
+      "candidate": "mmoe",
+      "training_seed": 2026,
+      "metric": "primary_logloss_candidate_minus_baseline",
+      "delta": -0.0009850687654434612,
+      "ci95": [
+        -0.0013432855836985685,
+        -0.0006214342984376244
+      ],
+      "users": 23858,
+      "rows": 161956,
+      "resamples": 2000,
+      "seed": 2026,
+      "lower_is_better": true,
+      "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+    },
+    {
+      "baseline": "deepfm_matched",
+      "candidate": "mmoe",
+      "training_seed": 2026,
+      "metric": "primary_logloss_candidate_minus_baseline",
+      "delta": 0.0006575133004946295,
+      "ci95": [
+        0.000364381247379778,
+        0.0009345437001528533
+      ],
+      "users": 23858,
+      "rows": 161956,
+      "resamples": 2000,
+      "seed": 2026,
+      "lower_is_better": true,
+      "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+    },
+    {
+      "baseline": "deepfm",
+      "candidate": "mmoe",
+      "training_seed": 2027,
+      "metric": "primary_logloss_candidate_minus_baseline",
+      "delta": 0.00013230139148192165,
+      "ci95": [
+        -0.00020711760125377107,
+        0.0004792917532006745
+      ],
+      "users": 23858,
+      "rows": 161956,
+      "resamples": 2000,
+      "seed": 2026,
+      "lower_is_better": true,
+      "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+    },
+    {
+      "baseline": "deepfm_matched",
+      "candidate": "mmoe",
+      "training_seed": 2027,
+      "metric": "primary_logloss_candidate_minus_baseline",
+      "delta": -0.0005546845190882976,
+      "ci95": [
+        -0.000965904629869548,
+        -0.00012147537729235212
+      ],
+      "users": 23858,
+      "rows": 161956,
+      "resamples": 2000,
+      "seed": 2026,
+      "lower_is_better": true,
+      "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+    },
+    {
+      "baseline": "deepfm",
+      "candidate": "mmoe",
+      "training_seed": 2028,
+      "metric": "primary_logloss_candidate_minus_baseline",
+      "delta": 0.0007715144530548046,
+      "ci95": [
+        0.0003972538107587456,
+        0.0011447813828530946
+      ],
+      "users": 23858,
+      "rows": 161956,
+      "resamples": 2000,
+      "seed": 2026,
+      "lower_is_better": true,
+      "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+    },
+    {
+      "baseline": "deepfm_matched",
+      "candidate": "mmoe",
+      "training_seed": 2028,
+      "metric": "primary_logloss_candidate_minus_baseline",
+      "delta": 0.0003984178362094791,
+      "ci95": [
+        1.7261572155425017e-05,
+        0.0007824019735617034
+      ],
+      "users": 23858,
+      "rows": 161956,
+      "resamples": 2000,
+      "seed": 2026,
+      "lower_is_better": true,
+      "scope": "paired user-cluster uncertainty for a fixed model pair; not causal lift or training uncertainty"
+    }
+  ]
+}

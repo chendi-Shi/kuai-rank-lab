@@ -1,8 +1,11 @@
 .venv/
 __pycache__/
 .pytest_cache/
+pytest-cache-files-*/
 *.egg-info/
 data/
 artifacts/
 results/**/predictions*.npz
 results/**/checkpoint*.pt
+results/**/*.pkl
+results/**/lightgbm.txt

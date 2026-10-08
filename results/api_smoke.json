@@ -1,0 +1,7 @@
+{
+  "health": "ok",
+  "returned_candidates": 10,
+  "max_prediction_difference": 0.0,
+  "request_candidates": 24,
+  "scope": "HTTP API scores agree with offline saved predictions"
+}

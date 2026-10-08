@@ -54,9 +54,10 @@ def create_app(run_dir=None):
         frame = pd.DataFrame(rows)
         predictions = scorer.predict(frame)
         order = np.argsort(-predictions[:, 0], kind="stable")[:request.k]
+        unknown_rates = encoder.unknown_rates(frame)
         return {"model": kind, "objective": meta["tasks"][0], "ranking": [
             {"candidate_id": identifiers[i], "scores": dict(zip(meta["tasks"], map(float, predictions[i])))}
             for i in order], "ranking_ms": (time.perf_counter() - start) * 1000,
-            "unknown_category_rates": encoder.unknown_rates(frame)}
+            "unknown_category_rates": unknown_rates}
 
     return app

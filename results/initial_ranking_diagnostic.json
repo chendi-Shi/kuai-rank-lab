@@ -1,0 +1,16 @@
+{
+  "logged_user_day_group_count": 82801,
+  "group_size_quantiles": {
+    "p50": 1.0,
+    "p90": 4.0,
+    "p95": 5.0,
+    "p99": 8.0,
+    "max": 24.0
+  },
+  "single_candidate_group_fraction": 0.5463702129201338,
+  "eligible_groups": 3751,
+  "min_candidates": 5,
+  "requires_positive_and_negative": true,
+  "nontrivial_logged_ndcg@10": 0.7681031349282371,
+  "scope": "logged exposure sets; not full-catalog recommendation quality"
+}

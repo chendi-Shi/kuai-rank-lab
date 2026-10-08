@@ -1,0 +1,610 @@
+{
+  "primary_task": "long_view",
+  "rows": [
+    {
+      "model": "deepfm",
+      "split": "valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 512899,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.7620075178457695,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6622931026266082,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5223770128938844,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.008456912456668521,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9193385086677671,
+        "std": null
+      }
+    },
+    {
+      "model": "deepfm",
+      "split": "standard_aligned_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 512899,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.7612370332708419,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.663295430977827,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5183767854985546,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.009761727774236935,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9250729784035123,
+        "std": null
+      }
+    },
+    {
+      "model": "deepfm",
+      "split": "random_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 512899,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.6852824555338927,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.5812549053616801,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.4376222796025596,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.23277378930450549,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.6768167016930448,
+        "std": null
+      }
+    },
+    {
+      "model": "deepfm_matched",
+      "split": "valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 657301,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.7643816378940463,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6633815848289748,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5207344307879787,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.008997950583017058,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9199861737503882,
+        "std": null
+      }
+    },
+    {
+      "model": "deepfm_matched",
+      "split": "standard_aligned_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 657301,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.7634550028030826,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6640447675515457,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5168731317540263,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.010061863206627556,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.925440152910845,
+        "std": null
+      }
+    },
+    {
+      "model": "deepfm_matched",
+      "split": "random_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 657301,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.694011053001576,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.5862848370590702,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.4232788911950478,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.22079034627670577,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.6792952456224504,
+        "std": null
+      }
+    },
+    {
+      "model": "lightgbm",
+      "split": "valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": null,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.760542065588303,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6542177085515406,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5248783338754458,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.013777013813262509,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9183831869564614,
+        "std": null
+      }
+    },
+    {
+      "model": "lightgbm",
+      "split": "standard_aligned_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": null,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.759718829001893,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6566767975413396,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5211706950715016,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.017178858987530004,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9241863863629131,
+        "std": null
+      }
+    },
+    {
+      "model": "lightgbm",
+      "split": "random_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": null,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.6984246677109838,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.5768292299979163,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.4714302211305011,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.26326604017845917,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.674553641131818,
+        "std": null
+      }
+    },
+    {
+      "model": "lr",
+      "split": "valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 37650,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.7639975536458367,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6610401242884685,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5216135695022883,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.015164791348784118,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9195742812276761,
+        "std": null
+      }
+    },
+    {
+      "model": "lr",
+      "split": "standard_aligned_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 37650,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.7628457629025212,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.661031585889835,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5185560449153896,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.020033826472992473,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9243754055186248,
+        "std": null
+      }
+    },
+    {
+      "model": "lr",
+      "split": "random_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 37650,
+      "tasks": [
+        "long_view"
+      ],
+      "auc": {
+        "mean": 0.6982359750940184,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.5720721469003303,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.4901598804296824,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.2747539488916715,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.6707813756416042,
+        "std": null
+      }
+    },
+    {
+      "model": "mmoe",
+      "split": "valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 657225,
+      "tasks": [
+        "long_view",
+        "is_click",
+        "is_like"
+      ],
+      "auc": {
+        "mean": 0.7637220573826997,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.660728833080308,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5213919441446633,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.010058239326193305,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9201172754003906,
+        "std": null
+      }
+    },
+    {
+      "model": "mmoe",
+      "split": "standard_aligned_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 657225,
+      "tasks": [
+        "long_view",
+        "is_click",
+        "is_like"
+      ],
+      "auc": {
+        "mean": 0.7628698197444985,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6633050871398308,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5174761877190421,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.011867797274257793,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9258245780298353,
+        "std": null
+      }
+    },
+    {
+      "model": "mmoe",
+      "split": "random_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 657225,
+      "tasks": [
+        "long_view",
+        "is_click",
+        "is_like"
+      ],
+      "auc": {
+        "mean": 0.6905605365440752,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.5733652672642913,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.44511191261493593,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.23863971421338565,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.6717021326086536,
+        "std": null
+      }
+    },
+    {
+      "model": "sharedbottom",
+      "split": "valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 594489,
+      "tasks": [
+        "long_view",
+        "is_click",
+        "is_like"
+      ],
+      "auc": {
+        "mean": 0.7636995917309277,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6602509190243766,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5215583839617982,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.00990674766335674,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9196003414334264,
+        "std": null
+      }
+    },
+    {
+      "model": "sharedbottom",
+      "split": "standard_aligned_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 594489,
+      "tasks": [
+        "long_view",
+        "is_click",
+        "is_like"
+      ],
+      "auc": {
+        "mean": 0.7629782830564817,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.6626854307319175,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.5174545533709514,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.010374983124433806,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.9255142176427404,
+        "std": null
+      }
+    },
+    {
+      "model": "sharedbottom",
+      "split": "random_valid",
+      "seeds": [
+        2026
+      ],
+      "training_rows": 250000,
+      "parameters": 594489,
+      "tasks": [
+        "long_view",
+        "is_click",
+        "is_like"
+      ],
+      "auc": {
+        "mean": 0.6931423634695448,
+        "std": null
+      },
+      "user_gauc": {
+        "mean": 0.5754102908273042,
+        "std": null
+      },
+      "logloss": {
+        "mean": 0.4353596054409013,
+        "std": null
+      },
+      "ece": {
+        "mean": 0.23143390199140754,
+        "std": null
+      },
+      "logged_user_day_ndcg@10": {
+        "mean": 0.6725328878628264,
+        "std": null
+      }
+    }
+  ],
+  "run_files": [
+    "results\\initial\\deepfm_matched_s2026\\metrics.json",
+    "results\\initial\\deepfm_s2026\\metrics.json",
+    "results\\initial\\lightgbm_s2026\\metrics.json",
+    "results\\initial\\lr_s2026\\metrics.json",
+    "results\\initial\\mmoe_s2026\\metrics.json",
+    "results\\initial\\sharedbottom_s2026\\metrics.json"
+  ],
+  "limitations": [
+    "KuaiRand-Pure contains candidate-pool histories, not complete user sequences.",
+    "Compare standard_aligned_valid with random_valid for matched dates; item/user supports can still differ.",
+    "User-day NDCG scores logged exposure sets, not arbitrary or full-catalog candidates.",
+    "Random exposure supports policy-shift diagnosis, not an online A/B lift claim.",
+    "Histories replay earlier standard logs with previous-day feedback assumed finalized.",
+    "MMoE and shared-bottom can have different parameter counts; report them explicitly.",
+    "One seed is preliminary; between-seed std is not a confidence interval."
+  ]
+}

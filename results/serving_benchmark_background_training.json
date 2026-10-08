@@ -1,0 +1,30 @@
+{
+  "model": {
+    "status": "ok",
+    "model": "lightgbm",
+    "tasks": [
+      "long_view"
+    ],
+    "data_manifest_sha256": "fdc35f184ef96f2c7cb0b3fd459f6cc3fe3b34dc4eb067c89e1f930f6b9e39ce"
+  },
+  "requests": 300,
+  "concurrency": 4,
+  "candidates": 24,
+  "warmup_requests": 20,
+  "qps": 6.144144228723023,
+  "client_ms": {
+    "p50": 623.2179000003271,
+    "p95": 932.0784800005185,
+    "p99": 1099.7229049999714
+  },
+  "scoring_ms": {
+    "p50": 201.42215000032593,
+    "p95": 436.2098749996221,
+    "p99": 532.9818800001239
+  },
+  "environment": {
+    "python": "3.10.21 | packaged by Anaconda, Inc. | (main, Aug 27 2026, 14:35:39) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "scope": "local warm-model HTTP ranker test; repeated fixed real-exposure feature payload; no retrieval or feature-store latency"
+}

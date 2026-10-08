@@ -1,0 +1,2753 @@
+{
+  "model": "deepfm",
+  "effective_model_kind": "deepfm",
+  "matched_mmoe_parameter_target": null,
+  "seed": 2027,
+  "tasks": [
+    "long_view"
+  ],
+  "config": {
+    "dataset": "KuaiRand-Pure",
+    "train_end": "2022-04-22",
+    "valid_end": "2022-05-01",
+    "random_calibration_end": "2022-04-26",
+    "random_valid_end": "2022-05-01",
+    "tasks": [
+      "long_view",
+      "is_click",
+      "is_like"
+    ],
+    "categorical": [
+      "user_id",
+      "video_id",
+      "author_id",
+      "tab",
+      "video_type",
+      "upload_type",
+      "music_type",
+      "tag_first"
+    ],
+    "numeric": [
+      "duration_log",
+      "aspect_ratio",
+      "video_age_log",
+      "hour_sin",
+      "hour_cos",
+      "weekday_sin",
+      "weekday_cos",
+      "user_count_log",
+      "user_long_view_rate",
+      "user_is_click_rate",
+      "user_is_like_rate",
+      "item_count_log",
+      "item_long_view_rate",
+      "item_is_click_rate",
+      "item_is_like_rate",
+      "author_count_log",
+      "author_long_view_rate",
+      "author_is_click_rate",
+      "author_is_like_rate"
+    ],
+    "embedding_dim": 12,
+    "hidden_dim": 96,
+    "experts": 4,
+    "batch_size": 2048,
+    "epochs": 5,
+    "patience": 2,
+    "learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "task_weights": [
+      1.0,
+      0.3,
+      0.1
+    ],
+    "max_train_rows": 250000,
+    "seeds": [
+      2026,
+      2027,
+      2028
+    ],
+    "threads": 4
+  },
+  "source_sha256": {
+    "data.py": "2b615b6f4952f837fa46fd6f9b5541f0a5d50d41ec445f7fc0a47f409fbccf6b",
+    "encoding.py": "a6be5782dc9be53e6ba001744a813d6ce915013bf8158e2b31f5479ffb8be06b",
+    "metrics.py": "d5a3c2ad92c7c648d3a29641ee0e9c6dbcda9749dbc6d8377573fceced8dd825",
+    "models.py": "158322cd7f95c739a4dc9b6e6476481908554a9ac16a70041c571161ffa072ab",
+    "train.py": "4d46ba0f924c7af4b43ad58627022a6fe011cddd671bac79ec20a77bfa061f6b"
+  },
+  "model_artifact_sha256": {
+    "checkpoint.pt": "eba38b98f96f14edceeb34b1c2891e4c8589dedde05a0f0c35921069d27c369d",
+    "encoder.pkl": "4f8d4f8d7d1ecc6ed12982f52714224fb5aee72c27317413fd9e5ffce0135bda"
+  },
+  "training_rows": 250000,
+  "available_training_rows": 1141300,
+  "training_event_ids_sha256": "fa9adbae49f4708c9b2bb4b5a462ee0f54fa4444d647a6dd750848f64f293a8d",
+  "parameters": 512899,
+  "seconds": 121.15035750000061,
+  "data_manifest_sha256": "fdc35f184ef96f2c7cb0b3fd459f6cc3fe3b34dc4eb067c89e1f930f6b9e39ce",
+  "environment": {
+    "python": "3.10.21 | packaged by Anaconda, Inc. | (main, Aug 27 2026, 14:35:39) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "torch": "2.14.0+cpu",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "lightgbm": "4.7.0",
+    "threads": 4,
+    "device": "cpu",
+    "git_revision": "HEAD"
+  },
+  "curves": [
+    {
+      "epoch": 1,
+      "loss": 0.5738812912921906,
+      "valid_primary_logloss": 0.5220148457136827,
+      "valid_primary_auc": 0.7624346564388691,
+      "seconds": 21.49352579999959
+    },
+    {
+      "epoch": 2,
+      "loss": 0.5083859944610596,
+      "valid_primary_logloss": 0.5324513652197788,
+      "valid_primary_auc": 0.7523325339765752,
+      "seconds": 40.93579429999954
+    },
+    {
+      "epoch": 3,
+      "loss": 0.48203345848083495,
+      "valid_primary_logloss": 0.5522811053493901,
+      "valid_primary_auc": 0.7427110461754332,
+      "seconds": 26.27083810000022
+    }
+  ],
+  "unknown_category_rates": {
+    "valid": {
+      "user_id": 0.04894539257576132,
+      "video_id": 0.0030810837511422856,
+      "author_id": 0.0024389340314653362,
+      "tab": 0.0,
+      "video_type": 0.0,
+      "upload_type": 0.0,
+      "music_type": 0.0,
+      "tag_first": 0.0
+    },
+    "standard_aligned_valid": {
+      "user_id": 0.05696986376771708,
+      "video_id": 0.002964834807410836,
+      "author_id": 0.002251773271451268,
+      "tab": 0.0,
+      "video_type": 0.0,
+      "upload_type": 0.0,
+      "music_type": 0.0,
+      "tag_first": 0.0
+    },
+    "random_valid": {
+      "user_id": 0.0692871110212063,
+      "video_id": 0.06047082026904015,
+      "author_id": 0.04508866862209636,
+      "tab": 0.0,
+      "video_type": 0.0,
+      "upload_type": 0.0,
+      "music_type": 0.0,
+      "tag_first": 0.0
+    },
+    "test": {
+      "user_id": 0.06919979303052799,
+      "video_id": 0.0027145995965595074,
+      "author_id": 0.0021146880835076825,
+      "tab": 0.0,
+      "video_type": 0.0,
+      "upload_type": 0.0,
+      "music_type": 0.0,
+      "tag_first": 0.0
+    },
+    "random_test": {
+      "user_id": 0.08062547770700637,
+      "video_id": 0.061244585987261145,
+      "author_id": 0.04562038216560509,
+      "tab": 0.0,
+      "video_type": 0.0,
+      "upload_type": 0.0,
+      "music_type": 0.0,
+      "tag_first": 0.0
+    }
+  },
+  "predictions": {
+    "valid": {
+      "file": "predictions_valid.npz",
+      "sha256": "d116bab0d3ee24cc1ec0b44693d3dddc442112c5ca41633cbe4462361d2c1502"
+    },
+    "standard_aligned_valid": {
+      "file": "predictions_standard_aligned_valid.npz",
+      "sha256": "62bd09ed0f240ed0e30f4ef1b5279862e2c007554163245b1f05ea99d907452d"
+    },
+    "random_valid": {
+      "file": "predictions_random_valid.npz",
+      "sha256": "c973b76f226ad032fce680bd80a05f7b67ef524a81f1b5d2507b90da62768e99"
+    },
+    "test": {
+      "file": "predictions_test.npz",
+      "sha256": "a815bfdc373f3de40900986fdbcd47d3b6636c1be782be6be851e42a388f1027"
+    },
+    "random_test": {
+      "file": "predictions_random_test.npz",
+      "sha256": "eabf78995e66c6ffc0ed9cade3e3b1380253346919a9789a36ac3153fa40173b"
+    }
+  },
+  "metrics": {
+    "valid": {
+      "long_view": {
+        "rows": 161956,
+        "positive_rate": 0.31335671416928057,
+        "mean_prediction": 0.31118000640408205,
+        "auc": 0.7624346564388691,
+        "logloss": 0.5220148457136827,
+        "brier": 0.17640017436798047,
+        "ece": 0.003911743011988879,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 22802,
+            "predicted": 0.030687578339428662,
+            "observed": 0.032804139987720374
+          },
+          {
+            "bin": 1,
+            "rows": 14037,
+            "predicted": 0.0997227914395169,
+            "observed": 0.10251478236090333
+          },
+          {
+            "bin": 2,
+            "rows": 16339,
+            "predicted": 0.16739198972417307,
+            "observed": 0.16684007589203745
+          },
+          {
+            "bin": 3,
+            "rows": 18604,
+            "predicted": 0.23380406564123604,
+            "observed": 0.23779832294130296
+          },
+          {
+            "bin": 4,
+            "rows": 18665,
+            "predicted": 0.2998861994096366,
+            "observed": 0.30479507098848113
+          },
+          {
+            "bin": 5,
+            "rows": 17849,
+            "predicted": 0.36585602523252153,
+            "observed": 0.3712813042747493
+          },
+          {
+            "bin": 6,
+            "rows": 15463,
+            "predicted": 0.43244221959170814,
+            "observed": 0.43988876673349286
+          },
+          {
+            "bin": 7,
+            "rows": 12933,
+            "predicted": 0.4987166183809481,
+            "observed": 0.49764169179618034
+          },
+          {
+            "bin": 8,
+            "rows": 10225,
+            "predicted": 0.5649279068093428,
+            "observed": 0.564596577017115
+          },
+          {
+            "bin": 9,
+            "rows": 7634,
+            "predicted": 0.6316463419567829,
+            "observed": 0.6350537070998166
+          },
+          {
+            "bin": 10,
+            "rows": 4822,
+            "predicted": 0.6967890376695604,
+            "observed": 0.6758606387391124
+          },
+          {
+            "bin": 11,
+            "rows": 2162,
+            "predicted": 0.7603924625125006,
+            "observed": 0.7585568917668826
+          },
+          {
+            "bin": 12,
+            "rows": 407,
+            "predicted": 0.8213927466101962,
+            "observed": 0.7985257985257985
+          },
+          {
+            "bin": 13,
+            "rows": 14,
+            "predicted": 0.882092045886176,
+            "observed": 1.0
+          }
+        ],
+        "user_gauc": 0.6616830988775013,
+        "gauc_eligible_users": 15243,
+        "gauc_row_coverage": 0.8336955716367408,
+        "logged_user_day_ndcg@10": 0.919436065498461,
+        "ndcg_positive_groups": 37451,
+        "ndcg_all_groups": 82801,
+        "ranking_protocol": "observed user-day exposure sets; groups without positives excluded",
+        "slices": {
+          "user_no_prior_exposures": {
+            "rows": 1207,
+            "positive_rate": 0.352112676056338,
+            "mean_prediction": 0.3926989703030999,
+            "auc": 0.7282789228223259,
+            "logloss": 0.5680460424470838,
+            "brier": 0.195627481558046,
+            "ece": 0.04229301700944139,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 113,
+                "predicted": 0.04398223728073382,
+                "observed": 0.05309734513274336
+              },
+              {
+                "bin": 1,
+                "rows": 117,
+                "predicted": 0.09555236116433755,
+                "observed": 0.07692307692307693
+              },
+              {
+                "bin": 2,
+                "rows": 48,
+                "predicted": 0.16531839376936355,
+                "observed": 0.125
+              },
+              {
+                "bin": 3,
+                "rows": 45,
+                "predicted": 0.23760189844502344,
+                "observed": 0.08888888888888889
+              },
+              {
+                "bin": 4,
+                "rows": 73,
+                "predicted": 0.3058836570341293,
+                "observed": 0.2465753424657534
+              },
+              {
+                "bin": 5,
+                "rows": 113,
+                "predicted": 0.3647831106080418,
+                "observed": 0.336283185840708
+              },
+              {
+                "bin": 6,
+                "rows": 151,
+                "predicted": 0.43714008544454513,
+                "observed": 0.41721854304635764
+              },
+              {
+                "bin": 7,
+                "rows": 209,
+                "predicted": 0.5007014588305825,
+                "observed": 0.47368421052631576
+              },
+              {
+                "bin": 8,
+                "rows": 182,
+                "predicted": 0.5630688385649042,
+                "observed": 0.5054945054945055
+              },
+              {
+                "bin": 9,
+                "rows": 97,
+                "predicted": 0.628207524412686,
+                "observed": 0.5360824742268041
+              },
+              {
+                "bin": 10,
+                "rows": 50,
+                "predicted": 0.6969106543064117,
+                "observed": 0.64
+              },
+              {
+                "bin": 11,
+                "rows": 9,
+                "predicted": 0.7495246993170844,
+                "observed": 0.6666666666666666
+              }
+            ]
+          },
+          "user_with_history": {
+            "rows": 160749,
+            "positive_rate": 0.31306571113972714,
+            "mean_prediction": 0.3105679130820327,
+            "auc": 0.7626412956800863,
+            "logloss": 0.5216692158531101,
+            "brier": 0.176255804202204,
+            "ece": 0.0040646966920046814,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 22689,
+                "predicted": 0.03062136579324472,
+                "observed": 0.03270307197320287
+              },
+              {
+                "bin": 1,
+                "rows": 13920,
+                "predicted": 0.09975784462501948,
+                "observed": 0.10272988505747127
+              },
+              {
+                "bin": 2,
+                "rows": 16291,
+                "predicted": 0.1673980993924458,
+                "observed": 0.16696335399914064
+              },
+              {
+                "bin": 3,
+                "rows": 18559,
+                "predicted": 0.23379485703753053,
+                "observed": 0.23815938358747776
+              },
+              {
+                "bin": 4,
+                "rows": 18592,
+                "predicted": 0.2998626508722771,
+                "observed": 0.3050236660929432
+              },
+              {
+                "bin": 5,
+                "rows": 17736,
+                "predicted": 0.36586286101018084,
+                "observed": 0.3715042850699143
+              },
+              {
+                "bin": 6,
+                "rows": 15312,
+                "predicted": 0.4323958913691521,
+                "observed": 0.44011233019853707
+              },
+              {
+                "bin": 7,
+                "rows": 12724,
+                "predicted": 0.4986840160818304,
+                "observed": 0.4980352090537567
+              },
+              {
+                "bin": 8,
+                "rows": 10043,
+                "predicted": 0.5649615969836421,
+                "observed": 0.5656676291944638
+              },
+              {
+                "bin": 9,
+                "rows": 7537,
+                "predicted": 0.6316905989956283,
+                "observed": 0.6363274512405467
+              },
+              {
+                "bin": 10,
+                "rows": 4772,
+                "predicted": 0.6967877633963326,
+                "observed": 0.6762363788767812
+              },
+              {
+                "bin": 11,
+                "rows": 2153,
+                "predicted": 0.7604378920846134,
+                "observed": 0.758941012540641
+              },
+              {
+                "bin": 12,
+                "rows": 407,
+                "predicted": 0.8213927466101962,
+                "observed": 0.7985257985257985
+              },
+              {
+                "bin": 13,
+                "rows": 14,
+                "predicted": 0.882092045886176,
+                "observed": 1.0
+              }
+            ]
+          },
+          "item_no_prior_exposures": {
+            "rows": 15,
+            "positive_rate": 0.3333333333333333,
+            "mean_prediction": 0.2493720419704914,
+            "auc": 0.96,
+            "logloss": 0.44169986335881795,
+            "brier": 0.14857519431127741,
+            "ece": 0.22923379813631375,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 3,
+                "predicted": 0.03786999359726906,
+                "observed": 0.0
+              },
+              {
+                "bin": 2,
+                "rows": 4,
+                "predicted": 0.1781613603234291,
+                "observed": 0.0
+              },
+              {
+                "bin": 3,
+                "rows": 1,
+                "predicted": 0.26328837871551514,
+                "observed": 0.0
+              },
+              {
+                "bin": 4,
+                "rows": 2,
+                "predicted": 0.2874261140823364,
+                "observed": 0.5
+              },
+              {
+                "bin": 5,
+                "rows": 3,
+                "predicted": 0.37533020973205566,
+                "observed": 0.6666666666666666
+              },
+              {
+                "bin": 6,
+                "rows": 1,
+                "predicted": 0.43432703614234924,
+                "observed": 1.0
+              },
+              {
+                "bin": 7,
+                "rows": 1,
+                "predicted": 0.5158669352531433,
+                "observed": 1.0
+              }
+            ]
+          },
+          "item_low_exposure": {
+            "rows": 951,
+            "positive_rate": 0.1819137749737119,
+            "mean_prediction": 0.19767504897836272,
+            "auc": 0.7753540276683952,
+            "logloss": 0.3997291735751874,
+            "brier": 0.1274042188705176,
+            "ece": 0.030959131482589025,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 266,
+                "predicted": 0.02909226926512792,
+                "observed": 0.02631578947368421
+              },
+              {
+                "bin": 1,
+                "rows": 159,
+                "predicted": 0.10011032622002955,
+                "observed": 0.09433962264150944
+              },
+              {
+                "bin": 2,
+                "rows": 123,
+                "predicted": 0.16584378202271655,
+                "observed": 0.17073170731707318
+              },
+              {
+                "bin": 3,
+                "rows": 113,
+                "predicted": 0.23147465539189566,
+                "observed": 0.168141592920354
+              },
+              {
+                "bin": 4,
+                "rows": 80,
+                "predicted": 0.29599429853260517,
+                "observed": 0.3
+              },
+              {
+                "bin": 5,
+                "rows": 73,
+                "predicted": 0.3653862917259948,
+                "observed": 0.4246575342465753
+              },
+              {
+                "bin": 6,
+                "rows": 58,
+                "predicted": 0.43146745346743487,
+                "observed": 0.3103448275862069
+              },
+              {
+                "bin": 7,
+                "rows": 42,
+                "predicted": 0.4962547683999652,
+                "observed": 0.35714285714285715
+              },
+              {
+                "bin": 8,
+                "rows": 27,
+                "predicted": 0.5569139078811363,
+                "observed": 0.5555555555555556
+              },
+              {
+                "bin": 9,
+                "rows": 8,
+                "predicted": 0.6277363002300262,
+                "observed": 0.875
+              },
+              {
+                "bin": 11,
+                "rows": 2,
+                "predicted": 0.7491715848445892,
+                "observed": 0.5
+              }
+            ]
+          },
+          "item_high_exposure": {
+            "rows": 136725,
+            "positive_rate": 0.3273358932163101,
+            "mean_prediction": 0.32541850731294214,
+            "auc": 0.7554479872883119,
+            "logloss": 0.5354204888717963,
+            "brier": 0.1817946195733949,
+            "ece": 0.0037516509164351275,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 16549,
+                "predicted": 0.031523409736969876,
+                "observed": 0.031784397848812616
+              },
+              {
+                "bin": 1,
+                "rows": 10615,
+                "predicted": 0.10002946461631171,
+                "observed": 0.10249646726330665
+              },
+              {
+                "bin": 2,
+                "rows": 13122,
+                "predicted": 0.16782319115358707,
+                "observed": 0.1656759640298735
+              },
+              {
+                "bin": 3,
+                "rows": 15709,
+                "predicted": 0.23398711667383976,
+                "observed": 0.23553377045006046
+              },
+              {
+                "bin": 4,
+                "rows": 16398,
+                "predicted": 0.2999259519611921,
+                "observed": 0.3058299792657641
+              },
+              {
+                "bin": 5,
+                "rows": 15818,
+                "predicted": 0.36587369889265847,
+                "observed": 0.3702111518523201
+              },
+              {
+                "bin": 6,
+                "rows": 13887,
+                "predicted": 0.4324827100774455,
+                "observed": 0.44149204291783684
+              },
+              {
+                "bin": 7,
+                "rows": 11661,
+                "predicted": 0.4986906157877277,
+                "observed": 0.5001286339078981
+              },
+              {
+                "bin": 8,
+                "rows": 9260,
+                "predicted": 0.5649261393698967,
+                "observed": 0.56414686825054
+              },
+              {
+                "bin": 9,
+                "rows": 6927,
+                "predicted": 0.6316167599834438,
+                "observed": 0.635051248736827
+              },
+              {
+                "bin": 10,
+                "rows": 4422,
+                "predicted": 0.6968795307779247,
+                "observed": 0.6775214834916328
+              },
+              {
+                "bin": 11,
+                "rows": 1969,
+                "predicted": 0.7604612951777562,
+                "observed": 0.760284408329101
+              },
+              {
+                "bin": 12,
+                "rows": 374,
+                "predicted": 0.8209984004497528,
+                "observed": 0.8101604278074866
+              },
+              {
+                "bin": 13,
+                "rows": 14,
+                "predicted": 0.882092045886176,
+                "observed": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "standard_aligned_valid": {
+      "long_view": {
+        "rows": 79937,
+        "positive_rate": 0.3062786944718966,
+        "mean_prediction": 0.3050464236984537,
+        "auc": 0.7612217001321966,
+        "logloss": 0.518208506332195,
+        "brier": 0.1748833082443717,
+        "ece": 0.004303903526836809,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 11658,
+            "predicted": 0.030650956409129026,
+            "observed": 0.032252530451192314
+          },
+          {
+            "bin": 1,
+            "rows": 7137,
+            "predicted": 0.09976195904475994,
+            "observed": 0.10102283872775676
+          },
+          {
+            "bin": 2,
+            "rows": 8223,
+            "predicted": 0.16735763132760637,
+            "observed": 0.16891645384896023
+          },
+          {
+            "bin": 3,
+            "rows": 9328,
+            "predicted": 0.23381354979927912,
+            "observed": 0.23606346483704974
+          },
+          {
+            "bin": 4,
+            "rows": 9229,
+            "predicted": 0.29972321054364276,
+            "observed": 0.31303499837468846
+          },
+          {
+            "bin": 5,
+            "rows": 8978,
+            "predicted": 0.3658002016671279,
+            "observed": 0.3672310091334373
+          },
+          {
+            "bin": 6,
+            "rows": 7474,
+            "predicted": 0.43222146773756204,
+            "observed": 0.43497457853893495
+          },
+          {
+            "bin": 7,
+            "rows": 6188,
+            "predicted": 0.4984490603314497,
+            "observed": 0.4927278603749192
+          },
+          {
+            "bin": 8,
+            "rows": 4828,
+            "predicted": 0.5649603172062643,
+            "observed": 0.5621375310687655
+          },
+          {
+            "bin": 9,
+            "rows": 3504,
+            "predicted": 0.6319699916801497,
+            "observed": 0.6252853881278538
+          },
+          {
+            "bin": 10,
+            "rows": 2189,
+            "predicted": 0.6968088195769413,
+            "observed": 0.6738236637734125
+          },
+          {
+            "bin": 11,
+            "rows": 1003,
+            "predicted": 0.7602291264657604,
+            "observed": 0.7627118644067796
+          },
+          {
+            "bin": 12,
+            "rows": 192,
+            "predicted": 0.8210149308045706,
+            "observed": 0.8229166666666666
+          },
+          {
+            "bin": 13,
+            "rows": 6,
+            "predicted": 0.8892033199469248,
+            "observed": 1.0
+          }
+        ],
+        "user_gauc": 0.6616497192415633,
+        "gauc_eligible_users": 9317,
+        "gauc_row_coverage": 0.6879042245768543,
+        "logged_user_day_ndcg@10": 0.9244638811936992,
+        "ndcg_positive_groups": 18703,
+        "ndcg_all_groups": 42848,
+        "ranking_protocol": "observed user-day exposure sets; groups without positives excluded",
+        "slices": {
+          "user_no_prior_exposures": {
+            "rows": 590,
+            "positive_rate": 0.3474576271186441,
+            "mean_prediction": 0.3941056003778289,
+            "auc": 0.6972062084257207,
+            "logloss": 0.5881909462968253,
+            "brier": 0.20342968749962753,
+            "ece": 0.05204165676229838,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 44,
+                "predicted": 0.0431916534435004,
+                "observed": 0.06818181818181818
+              },
+              {
+                "bin": 1,
+                "rows": 68,
+                "predicted": 0.09571221492746297,
+                "observed": 0.10294117647058823
+              },
+              {
+                "bin": 2,
+                "rows": 23,
+                "predicted": 0.16947726646195288,
+                "observed": 0.13043478260869565
+              },
+              {
+                "bin": 3,
+                "rows": 19,
+                "predicted": 0.23979171953703227,
+                "observed": 0.10526315789473684
+              },
+              {
+                "bin": 4,
+                "rows": 32,
+                "predicted": 0.30399307422339916,
+                "observed": 0.25
+              },
+              {
+                "bin": 5,
+                "rows": 56,
+                "predicted": 0.36743355223110746,
+                "observed": 0.32142857142857145
+              },
+              {
+                "bin": 6,
+                "rows": 86,
+                "predicted": 0.43936230068983034,
+                "observed": 0.4186046511627907
+              },
+              {
+                "bin": 7,
+                "rows": 101,
+                "predicted": 0.500613949381479,
+                "observed": 0.4752475247524752
+              },
+              {
+                "bin": 8,
+                "rows": 89,
+                "predicted": 0.5612797080800774,
+                "observed": 0.48314606741573035
+              },
+              {
+                "bin": 9,
+                "rows": 47,
+                "predicted": 0.6263115406036377,
+                "observed": 0.46808510638297873
+              },
+              {
+                "bin": 10,
+                "rows": 22,
+                "predicted": 0.6985394304448908,
+                "observed": 0.5909090909090909
+              },
+              {
+                "bin": 11,
+                "rows": 3,
+                "predicted": 0.7499310374259949,
+                "observed": 0.6666666666666666
+              }
+            ]
+          },
+          "user_with_history": {
+            "rows": 79347,
+            "positive_rate": 0.305972500535622,
+            "mean_prediction": 0.30438420692603846,
+            "auc": 0.7616206003037109,
+            "logloss": 0.5176881383336679,
+            "brier": 0.17467104610767342,
+            "ece": 0.004195780746317358,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 11614,
+                "predicted": 0.030603445588609623,
+                "observed": 0.03211641122782848
+              },
+              {
+                "bin": 1,
+                "rows": 7069,
+                "predicted": 0.09980091541765232,
+                "observed": 0.10100438534446174
+              },
+              {
+                "bin": 2,
+                "rows": 8200,
+                "predicted": 0.1673516860095466,
+                "observed": 0.16902439024390245
+              },
+              {
+                "bin": 3,
+                "rows": 9309,
+                "predicted": 0.23380134814227865,
+                "observed": 0.23633043291438394
+              },
+              {
+                "bin": 4,
+                "rows": 9197,
+                "predicted": 0.29970835399936174,
+                "observed": 0.3132543220615418
+              },
+              {
+                "bin": 5,
+                "rows": 8922,
+                "predicted": 0.36578994974697737,
+                "observed": 0.3675184936112979
+              },
+              {
+                "bin": 6,
+                "rows": 7388,
+                "predicted": 0.43213834488511277,
+                "observed": 0.43516513264753653
+              },
+              {
+                "bin": 7,
+                "rows": 6087,
+                "predicted": 0.49841313889329414,
+                "observed": 0.4930179070149499
+              },
+              {
+                "bin": 8,
+                "rows": 4739,
+                "predicted": 0.5650294402727826,
+                "observed": 0.5636210170922136
+              },
+              {
+                "bin": 9,
+                "rows": 3457,
+                "predicted": 0.632046921735283,
+                "observed": 0.6274226207694533
+              },
+              {
+                "bin": 10,
+                "rows": 2167,
+                "predicted": 0.6967912499234596,
+                "observed": 0.6746654360867559
+              },
+              {
+                "bin": 11,
+                "rows": 1000,
+                "predicted": 0.7602600207328797,
+                "observed": 0.763
+              },
+              {
+                "bin": 12,
+                "rows": 192,
+                "predicted": 0.8210149308045706,
+                "observed": 0.8229166666666666
+              },
+              {
+                "bin": 13,
+                "rows": 6,
+                "predicted": 0.8892033199469248,
+                "observed": 1.0
+              }
+            ]
+          },
+          "item_no_prior_exposures": {
+            "rows": 6,
+            "positive_rate": 0.16666666666666666,
+            "mean_prediction": 0.1950684916228056,
+            "auc": 1.0,
+            "logloss": 0.31995306787523903,
+            "brier": 0.0946671753865289,
+            "ece": 0.24115642222265402,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 1,
+                "predicted": 0.031212765723466873,
+                "observed": 0.0
+              },
+              {
+                "bin": 2,
+                "rows": 3,
+                "predicted": 0.1713911990324656,
+                "observed": 0.0
+              },
+              {
+                "bin": 3,
+                "rows": 1,
+                "predicted": 0.26328837871551514,
+                "observed": 0.0
+              },
+              {
+                "bin": 5,
+                "rows": 1,
+                "predicted": 0.3617362082004547,
+                "observed": 1.0
+              }
+            ]
+          },
+          "item_low_exposure": {
+            "rows": 414,
+            "positive_rate": 0.16908212560386474,
+            "mean_prediction": 0.20780525720849238,
+            "auc": 0.7604235880398671,
+            "logloss": 0.3991752084463915,
+            "brier": 0.1255729595491209,
+            "ece": 0.05266046526859816,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 116,
+                "predicted": 0.028905401933649235,
+                "observed": 0.04310344827586207
+              },
+              {
+                "bin": 1,
+                "rows": 58,
+                "predicted": 0.09910025974286013,
+                "observed": 0.06896551724137931
+              },
+              {
+                "bin": 2,
+                "rows": 42,
+                "predicted": 0.16415091284683772,
+                "observed": 0.11904761904761904
+              },
+              {
+                "bin": 3,
+                "rows": 62,
+                "predicted": 0.231310989827879,
+                "observed": 0.14516129032258066
+              },
+              {
+                "bin": 4,
+                "rows": 35,
+                "predicted": 0.29916706681251526,
+                "observed": 0.2857142857142857
+              },
+              {
+                "bin": 5,
+                "rows": 35,
+                "predicted": 0.36961588433810644,
+                "observed": 0.34285714285714286
+              },
+              {
+                "bin": 6,
+                "rows": 31,
+                "predicted": 0.43053421281999155,
+                "observed": 0.2903225806451613
+              },
+              {
+                "bin": 7,
+                "rows": 19,
+                "predicted": 0.4957965533984335,
+                "observed": 0.3157894736842105
+              },
+              {
+                "bin": 8,
+                "rows": 10,
+                "predicted": 0.560769784450531,
+                "observed": 0.6
+              },
+              {
+                "bin": 9,
+                "rows": 5,
+                "predicted": 0.6308494925498962,
+                "observed": 0.8
+              },
+              {
+                "bin": 11,
+                "rows": 1,
+                "predicted": 0.7588713765144348,
+                "observed": 0.0
+              }
+            ]
+          },
+          "item_high_exposure": {
+            "rows": 68599,
+            "positive_rate": 0.31821163573813027,
+            "mean_prediction": 0.31693530615732385,
+            "auc": 0.7554685390505846,
+            "logloss": 0.5296314604186672,
+            "brier": 0.17953450956180658,
+            "ece": 0.004199516804365265,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 9014,
+                "predicted": 0.03132452728745032,
+                "observed": 0.03117372975371644
+              },
+              {
+                "bin": 1,
+                "rows": 5543,
+                "predicted": 0.09985658439051345,
+                "observed": 0.10229117806242106
+              },
+              {
+                "bin": 2,
+                "rows": 6718,
+                "predicted": 0.16780388592591275,
+                "observed": 0.1689490919916642
+              },
+              {
+                "bin": 3,
+                "rows": 7963,
+                "predicted": 0.23400928951733438,
+                "observed": 0.23571518272008038
+              },
+              {
+                "bin": 4,
+                "rows": 8175,
+                "predicted": 0.2997340185124575,
+                "observed": 0.31522935779816513
+              },
+              {
+                "bin": 5,
+                "rows": 8007,
+                "predicted": 0.3658169111695438,
+                "observed": 0.36543024853253403
+              },
+              {
+                "bin": 6,
+                "rows": 6744,
+                "predicted": 0.4323148319756221,
+                "observed": 0.43534994068801897
+              },
+              {
+                "bin": 7,
+                "rows": 5652,
+                "predicted": 0.4983223414197511,
+                "observed": 0.4968152866242038
+              },
+              {
+                "bin": 8,
+                "rows": 4432,
+                "predicted": 0.564861903323486,
+                "observed": 0.5609205776173285
+              },
+              {
+                "bin": 9,
+                "rows": 3211,
+                "predicted": 0.6319366609593561,
+                "observed": 0.6234817813765182
+              },
+              {
+                "bin": 10,
+                "rows": 2020,
+                "predicted": 0.6967567549778684,
+                "observed": 0.6757425742574258
+              },
+              {
+                "bin": 11,
+                "rows": 931,
+                "predicted": 0.7602165772886716,
+                "observed": 0.765843179377014
+              },
+              {
+                "bin": 12,
+                "rows": 183,
+                "predicted": 0.8209042122455242,
+                "observed": 0.819672131147541
+              },
+              {
+                "bin": 13,
+                "rows": 6,
+                "predicted": 0.8892033199469248,
+                "observed": 1.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "random_valid": {
+      "long_view": {
+        "rows": 237288,
+        "positive_rate": 0.08003776002157716,
+        "mean_prediction": 0.31429222926021466,
+        "auc": 0.6861681288040486,
+        "logloss": 0.4390141850567742,
+        "brier": 0.13636573216848996,
+        "ece": 0.2342544692386375,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 5110,
+            "predicted": 0.05002436866079787,
+            "observed": 0.011545988258317026
+          },
+          {
+            "bin": 1,
+            "rows": 22116,
+            "predicted": 0.10397462184335596,
+            "observed": 0.021929824561403508
+          },
+          {
+            "bin": 2,
+            "rows": 33828,
+            "predicted": 0.16806979853238313,
+            "observed": 0.035237081707461274
+          },
+          {
+            "bin": 3,
+            "rows": 39053,
+            "predicted": 0.2336028180590049,
+            "observed": 0.05187821678232146
+          },
+          {
+            "bin": 4,
+            "rows": 37812,
+            "predicted": 0.2994650830673841,
+            "observed": 0.066936422299799
+          },
+          {
+            "bin": 5,
+            "rows": 32776,
+            "predicted": 0.3654166705158969,
+            "observed": 0.0903404930436905
+          },
+          {
+            "bin": 6,
+            "rows": 25884,
+            "predicted": 0.43166346195639055,
+            "observed": 0.11165198578272292
+          },
+          {
+            "bin": 7,
+            "rows": 18631,
+            "predicted": 0.49784282212652553,
+            "observed": 0.1340776125811819
+          },
+          {
+            "bin": 8,
+            "rows": 11699,
+            "predicted": 0.563643609548147,
+            "observed": 0.17078382767757927
+          },
+          {
+            "bin": 9,
+            "rows": 6346,
+            "predicted": 0.6299202177113552,
+            "observed": 0.2051686101481248
+          },
+          {
+            "bin": 10,
+            "rows": 2980,
+            "predicted": 0.6948213065030591,
+            "observed": 0.2557046979865772
+          },
+          {
+            "bin": 11,
+            "rows": 964,
+            "predicted": 0.7576174464586859,
+            "observed": 0.26348547717842324
+          },
+          {
+            "bin": 12,
+            "rows": 88,
+            "predicted": 0.8206361850554292,
+            "observed": 0.38636363636363635
+          },
+          {
+            "bin": 13,
+            "rows": 1,
+            "predicted": 0.8670699000358582,
+            "observed": 0.0
+          }
+        ],
+        "user_gauc": 0.5748320185091097,
+        "gauc_eligible_users": 6787,
+        "gauc_row_coverage": 0.6575806614746637,
+        "logged_user_day_ndcg@10": 0.6710671677845456,
+        "ndcg_positive_groups": 11920,
+        "ndcg_all_groups": 52856,
+        "ranking_protocol": "observed user-day exposure sets; groups without positives excluded",
+        "slices": {
+          "user_no_prior_exposures": {
+            "rows": 1966,
+            "positive_rate": 0.10681586978636826,
+            "mean_prediction": 0.3886288023370935,
+            "auc": 0.5489749430523918,
+            "logloss": 0.5563975577090731,
+            "brier": 0.18681040691513534,
+            "ece": 0.2818129325507252,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 1,
+                "predicted": 0.03991898149251938,
+                "observed": 0.0
+              },
+              {
+                "bin": 1,
+                "rows": 56,
+                "predicted": 0.10608173254877329,
+                "observed": 0.017857142857142856
+              },
+              {
+                "bin": 2,
+                "rows": 99,
+                "predicted": 0.17152602639463213,
+                "observed": 0.050505050505050504
+              },
+              {
+                "bin": 3,
+                "rows": 236,
+                "predicted": 0.2357249004861056,
+                "observed": 0.08898305084745763
+              },
+              {
+                "bin": 4,
+                "rows": 287,
+                "predicted": 0.3019655098690804,
+                "observed": 0.11846689895470383
+              },
+              {
+                "bin": 5,
+                "rows": 324,
+                "predicted": 0.36793347503300067,
+                "observed": 0.11419753086419752
+              },
+              {
+                "bin": 6,
+                "rows": 354,
+                "predicted": 0.43254475632293077,
+                "observed": 0.1016949152542373
+              },
+              {
+                "bin": 7,
+                "rows": 343,
+                "predicted": 0.49858413997266454,
+                "observed": 0.1282798833819242
+              },
+              {
+                "bin": 8,
+                "rows": 189,
+                "predicted": 0.5635853923817791,
+                "observed": 0.10582010582010581
+              },
+              {
+                "bin": 9,
+                "rows": 69,
+                "predicted": 0.6280396321545476,
+                "observed": 0.13043478260869565
+              },
+              {
+                "bin": 10,
+                "rows": 8,
+                "predicted": 0.6986814364790916,
+                "observed": 0.375
+              }
+            ]
+          },
+          "user_with_history": {
+            "rows": 235322,
+            "positive_rate": 0.07981404203601873,
+            "mean_prediction": 0.31367118361777946,
+            "auc": 0.6870749826825522,
+            "logloss": 0.43803350449722417,
+            "brier": 0.13594429162934826,
+            "ece": 0.2338571415817607,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 5109,
+                "predicted": 0.050026346618748205,
+                "observed": 0.011548248189469564
+              },
+              {
+                "bin": 1,
+                "rows": 22060,
+                "predicted": 0.10396927287692334,
+                "observed": 0.021940163191296463
+              },
+              {
+                "bin": 2,
+                "rows": 33729,
+                "predicted": 0.16805965395180372,
+                "observed": 0.035192267781434375
+              },
+              {
+                "bin": 3,
+                "rows": 38817,
+                "predicted": 0.2335899162002112,
+                "observed": 0.05165262642656568
+              },
+              {
+                "bin": 4,
+                "rows": 37525,
+                "predicted": 0.2994459592168288,
+                "observed": 0.0665423051299134
+              },
+              {
+                "bin": 5,
+                "rows": 32452,
+                "predicted": 0.36539154279916014,
+                "observed": 0.09010230494268458
+              },
+              {
+                "bin": 6,
+                "rows": 25530,
+                "predicted": 0.43165124189349374,
+                "observed": 0.1117900509204857
+              },
+              {
+                "bin": 7,
+                "rows": 18288,
+                "predicted": 0.49782891836333515,
+                "observed": 0.13418635170603674
+              },
+              {
+                "bin": 8,
+                "rows": 11510,
+                "predicted": 0.563644565503355,
+                "observed": 0.17185056472632493
+              },
+              {
+                "bin": 9,
+                "rows": 6277,
+                "predicted": 0.6299408900713074,
+                "observed": 0.2059901226700653
+              },
+              {
+                "bin": 10,
+                "rows": 2972,
+                "predicted": 0.6948109158436351,
+                "observed": 0.2553835800807537
+              },
+              {
+                "bin": 11,
+                "rows": 964,
+                "predicted": 0.7576174464586859,
+                "observed": 0.26348547717842324
+              },
+              {
+                "bin": 12,
+                "rows": 88,
+                "predicted": 0.8206361850554292,
+                "observed": 0.38636363636363635
+              },
+              {
+                "bin": 13,
+                "rows": 1,
+                "predicted": 0.8670699000358582,
+                "observed": 0.0
+              }
+            ]
+          },
+          "item_no_prior_exposures": {
+            "rows": 1135,
+            "positive_rate": 0.0907488986784141,
+            "mean_prediction": 0.311895862833847,
+            "auc": 0.670100474147663,
+            "logloss": 0.4400806794418425,
+            "brier": 0.1351116995495211,
+            "ece": 0.22114696415543292,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 11,
+                "predicted": 0.05046353573826226,
+                "observed": 0.0
+              },
+              {
+                "bin": 1,
+                "rows": 88,
+                "predicted": 0.10535974233326587,
+                "observed": 0.03409090909090909
+              },
+              {
+                "bin": 2,
+                "rows": 137,
+                "predicted": 0.16968032848225892,
+                "observed": 0.043795620437956206
+              },
+              {
+                "bin": 3,
+                "rows": 205,
+                "predicted": 0.23086394209687303,
+                "observed": 0.03902439024390244
+              },
+              {
+                "bin": 4,
+                "rows": 199,
+                "predicted": 0.30039949512960923,
+                "observed": 0.08040201005025126
+              },
+              {
+                "bin": 5,
+                "rows": 191,
+                "predicted": 0.36392376919067343,
+                "observed": 0.1256544502617801
+              },
+              {
+                "bin": 6,
+                "rows": 161,
+                "predicted": 0.4305607759804459,
+                "observed": 0.13664596273291926
+              },
+              {
+                "bin": 7,
+                "rows": 89,
+                "predicted": 0.49552910080116785,
+                "observed": 0.14606741573033707
+              },
+              {
+                "bin": 8,
+                "rows": 44,
+                "predicted": 0.560346248474988,
+                "observed": 0.1590909090909091
+              },
+              {
+                "bin": 9,
+                "rows": 10,
+                "predicted": 0.623518568277359,
+                "observed": 0.4
+              }
+            ]
+          },
+          "item_low_exposure": {
+            "rows": 31772,
+            "positive_rate": 0.05482815057283143,
+            "mean_prediction": 0.30477476949362314,
+            "auc": 0.6728511729372808,
+            "logloss": 0.4126472241806336,
+            "brier": 0.123496635750147,
+            "ece": 0.24994661892079173,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 373,
+                "predicted": 0.05281860739412161,
+                "observed": 0.00804289544235925
+              },
+              {
+                "bin": 1,
+                "rows": 2614,
+                "predicted": 0.10539542397665175,
+                "observed": 0.013771996939556235
+              },
+              {
+                "bin": 2,
+                "rows": 4700,
+                "predicted": 0.16852264454073093,
+                "observed": 0.023617021276595745
+              },
+              {
+                "bin": 3,
+                "rows": 5708,
+                "predicted": 0.23349087625825496,
+                "observed": 0.032410651716888575
+              },
+              {
+                "bin": 4,
+                "rows": 5766,
+                "predicted": 0.2995083681151059,
+                "observed": 0.05168227540756157
+              },
+              {
+                "bin": 5,
+                "rows": 4927,
+                "predicted": 0.3647617626098244,
+                "observed": 0.06981936269535215
+              },
+              {
+                "bin": 6,
+                "rows": 3655,
+                "predicted": 0.43093392636968403,
+                "observed": 0.08673050615595075
+              },
+              {
+                "bin": 7,
+                "rows": 2311,
+                "predicted": 0.49649160607765885,
+                "observed": 0.09562959757680657
+              },
+              {
+                "bin": 8,
+                "rows": 1122,
+                "predicted": 0.5627260921048183,
+                "observed": 0.12121212121212122
+              },
+              {
+                "bin": 9,
+                "rows": 440,
+                "predicted": 0.6282336102290587,
+                "observed": 0.15
+              },
+              {
+                "bin": 10,
+                "rows": 136,
+                "predicted": 0.6895457576302921,
+                "observed": 0.14705882352941177
+              },
+              {
+                "bin": 11,
+                "rows": 20,
+                "predicted": 0.7547451078891754,
+                "observed": 0.25
+              }
+            ]
+          },
+          "item_high_exposure": {
+            "rows": 78621,
+            "positive_rate": 0.11209473295938745,
+            "mean_prediction": 0.34131456142056243,
+            "auc": 0.6867735712060812,
+            "logloss": 0.48441433076185203,
+            "brier": 0.15637444398323472,
+            "ece": 0.22921982846117497,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 1449,
+                "predicted": 0.04967693488317329,
+                "observed": 0.013802622498274672
+              },
+              {
+                "bin": 1,
+                "rows": 5927,
+                "predicted": 0.10347555504342809,
+                "observed": 0.026826387717226254
+              },
+              {
+                "bin": 2,
+                "rows": 9454,
+                "predicted": 0.16847043457654406,
+                "observed": 0.04537761793949651
+              },
+              {
+                "bin": 3,
+                "rows": 11515,
+                "predicted": 0.2342603842486416,
+                "observed": 0.06765089014329136
+              },
+              {
+                "bin": 4,
+                "rows": 11868,
+                "predicted": 0.29976863661899605,
+                "observed": 0.08661948095719582
+              },
+              {
+                "bin": 5,
+                "rows": 10973,
+                "predicted": 0.3658537306390573,
+                "observed": 0.11264011664995899
+              },
+              {
+                "bin": 6,
+                "rows": 9397,
+                "predicted": 0.43246273752399056,
+                "observed": 0.14227945088858146
+              },
+              {
+                "bin": 7,
+                "rows": 7511,
+                "predicted": 0.4984784455452377,
+                "observed": 0.16642258021568365
+              },
+              {
+                "bin": 8,
+                "rows": 5218,
+                "predicted": 0.5644781450719932,
+                "observed": 0.2133001149865849
+              },
+              {
+                "bin": 9,
+                "rows": 3110,
+                "predicted": 0.6307396026669592,
+                "observed": 0.25369774919614146
+              },
+              {
+                "bin": 10,
+                "rows": 1579,
+                "predicted": 0.6955141997020255,
+                "observed": 0.2970234325522483
+              },
+              {
+                "bin": 11,
+                "rows": 560,
+                "predicted": 0.7577378943562507,
+                "observed": 0.3142857142857143
+              },
+              {
+                "bin": 12,
+                "rows": 59,
+                "predicted": 0.8208029643963959,
+                "observed": 0.4745762711864407
+              },
+              {
+                "bin": 13,
+                "rows": 1,
+                "predicted": 0.8670699000358582,
+                "observed": 0.0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "test": {
+      "long_view": {
+        "rows": 133353,
+        "positive_rate": 0.31334128216088125,
+        "mean_prediction": 0.31369516209407833,
+        "auc": 0.7507561976720692,
+        "logloss": 0.53178796938813,
+        "brier": 0.17989857251510052,
+        "ece": 0.004644518957133943,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 15260,
+            "predicted": 0.032714112357046944,
+            "observed": 0.03499344692005243
+          },
+          {
+            "bin": 1,
+            "rows": 12021,
+            "predicted": 0.10017089446745184,
+            "observed": 0.09882705265784876
+          },
+          {
+            "bin": 2,
+            "rows": 13913,
+            "predicted": 0.1676090114219744,
+            "observed": 0.16056925177891182
+          },
+          {
+            "bin": 3,
+            "rows": 16423,
+            "predicted": 0.23367471339325446,
+            "observed": 0.2304085733422639
+          },
+          {
+            "bin": 4,
+            "rows": 16675,
+            "predicted": 0.2998962963878483,
+            "observed": 0.30470764617691154
+          },
+          {
+            "bin": 5,
+            "rows": 15365,
+            "predicted": 0.3660194736872362,
+            "observed": 0.3660917670029287
+          },
+          {
+            "bin": 6,
+            "rows": 13583,
+            "predicted": 0.4325097170562761,
+            "observed": 0.44121328130751675
+          },
+          {
+            "bin": 7,
+            "rows": 10873,
+            "predicted": 0.4983223039000078,
+            "observed": 0.503081026395659
+          },
+          {
+            "bin": 8,
+            "rows": 8329,
+            "predicted": 0.5645188499590489,
+            "observed": 0.5640533077200144
+          },
+          {
+            "bin": 9,
+            "rows": 5776,
+            "predicted": 0.6307927673770285,
+            "observed": 0.6303670360110804
+          },
+          {
+            "bin": 10,
+            "rows": 3476,
+            "predicted": 0.6962959391886949,
+            "observed": 0.6682968929804373
+          },
+          {
+            "bin": 11,
+            "rows": 1403,
+            "predicted": 0.759232894573905,
+            "observed": 0.7248752672843906
+          },
+          {
+            "bin": 12,
+            "rows": 246,
+            "predicted": 0.8206935432868275,
+            "observed": 0.7682926829268293
+          },
+          {
+            "bin": 13,
+            "rows": 10,
+            "predicted": 0.8781854212284088,
+            "observed": 0.8
+          }
+        ],
+        "user_gauc": 0.6487735312196585,
+        "gauc_eligible_users": 13218,
+        "gauc_row_coverage": 0.8030715469468254,
+        "logged_user_day_ndcg@10": 0.9164266582303583,
+        "ndcg_positive_groups": 30764,
+        "ndcg_all_groups": 69269,
+        "ranking_protocol": "observed user-day exposure sets; groups without positives excluded",
+        "slices": {
+          "user_no_prior_exposures": {
+            "rows": 632,
+            "positive_rate": 0.35443037974683544,
+            "mean_prediction": 0.4050072080579504,
+            "auc": 0.687828256302521,
+            "logloss": 0.5912469698217234,
+            "brier": 0.20562760853868844,
+            "ece": 0.05189670074459967,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 32,
+                "predicted": 0.04946625971933827,
+                "observed": 0.0625
+              },
+              {
+                "bin": 1,
+                "rows": 40,
+                "predicted": 0.09224938657134771,
+                "observed": 0.025
+              },
+              {
+                "bin": 2,
+                "rows": 18,
+                "predicted": 0.1650129018558396,
+                "observed": 0.05555555555555555
+              },
+              {
+                "bin": 3,
+                "rows": 31,
+                "predicted": 0.23283698337693368,
+                "observed": 0.03225806451612903
+              },
+              {
+                "bin": 4,
+                "rows": 48,
+                "predicted": 0.298942473406593,
+                "observed": 0.2916666666666667
+              },
+              {
+                "bin": 5,
+                "rows": 81,
+                "predicted": 0.37001770550822033,
+                "observed": 0.345679012345679
+              },
+              {
+                "bin": 6,
+                "rows": 121,
+                "predicted": 0.43759814126432434,
+                "observed": 0.4297520661157025
+              },
+              {
+                "bin": 7,
+                "rows": 131,
+                "predicted": 0.49882567133612304,
+                "observed": 0.44274809160305345
+              },
+              {
+                "bin": 8,
+                "rows": 80,
+                "predicted": 0.563612325489521,
+                "observed": 0.475
+              },
+              {
+                "bin": 9,
+                "rows": 32,
+                "predicted": 0.6300885230302811,
+                "observed": 0.5625
+              },
+              {
+                "bin": 10,
+                "rows": 15,
+                "predicted": 0.6907394647598266,
+                "observed": 0.6
+              },
+              {
+                "bin": 11,
+                "rows": 3,
+                "predicted": 0.7581197818120321,
+                "observed": 0.6666666666666666
+              }
+            ]
+          },
+          "user_with_history": {
+            "rows": 132721,
+            "positive_rate": 0.31314562126566253,
+            "mean_prediction": 0.3132603461037741,
+            "auc": 0.7509841830316523,
+            "logloss": 0.5315048334241603,
+            "brier": 0.1797760542190742,
+            "ece": 0.004627882647779773,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 15228,
+                "predicted": 0.03267890952571037,
+                "observed": 0.03493564486472288
+              },
+              {
+                "bin": 1,
+                "rows": 11981,
+                "predicted": 0.10019734136803143,
+                "observed": 0.09907353309406561
+              },
+              {
+                "bin": 2,
+                "rows": 13895,
+                "predicted": 0.16761237450021768,
+                "observed": 0.16070528967254408
+              },
+              {
+                "bin": 3,
+                "rows": 16392,
+                "predicted": 0.23367629768013257,
+                "observed": 0.23078330893118595
+              },
+              {
+                "bin": 4,
+                "rows": 16627,
+                "predicted": 0.29989904995151584,
+                "observed": 0.3047452937992422
+              },
+              {
+                "bin": 5,
+                "rows": 15284,
+                "predicted": 0.36599828441888366,
+                "observed": 0.3661999476576812
+              },
+              {
+                "bin": 6,
+                "rows": 13462,
+                "predicted": 0.4324639809599179,
+                "observed": 0.4413162977269351
+              },
+              {
+                "bin": 7,
+                "rows": 10742,
+                "predicted": 0.4983161652727381,
+                "observed": 0.5038167938931297
+              },
+              {
+                "bin": 8,
+                "rows": 8249,
+                "predicted": 0.5645276415650087,
+                "observed": 0.5649169596314705
+              },
+              {
+                "bin": 9,
+                "rows": 5744,
+                "predicted": 0.6307966907438628,
+                "observed": 0.6307451253481894
+              },
+              {
+                "bin": 10,
+                "rows": 3461,
+                "predicted": 0.6963200209906114,
+                "observed": 0.6685928922276798
+              },
+              {
+                "bin": 11,
+                "rows": 1400,
+                "predicted": 0.7592352798155376,
+                "observed": 0.725
+              },
+              {
+                "bin": 12,
+                "rows": 246,
+                "predicted": 0.8206935432868275,
+                "observed": 0.7682926829268293
+              },
+              {
+                "bin": 13,
+                "rows": 10,
+                "predicted": 0.8781854212284088,
+                "observed": 0.8
+              }
+            ]
+          },
+          "item_no_prior_exposures": {
+            "rows": 3,
+            "positive_rate": 0.0,
+            "mean_prediction": 0.14213461863497892,
+            "auc": null,
+            "logloss": 0.1635905551251774,
+            "brier": 0.03447440493479829,
+            "ece": 0.14213461863497892,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 1,
+                "predicted": 0.020843012258410454,
+                "observed": 0.0
+              },
+              {
+                "bin": 1,
+                "rows": 1,
+                "predicted": 0.10092516988515854,
+                "observed": 0.0
+              },
+              {
+                "bin": 4,
+                "rows": 1,
+                "predicted": 0.3046356737613678,
+                "observed": 0.0
+              }
+            ]
+          },
+          "item_low_exposure": {
+            "rows": 501,
+            "positive_rate": 0.18363273453093812,
+            "mean_prediction": 0.2105812960454893,
+            "auc": 0.7635271606250664,
+            "logloss": 0.41066738654908447,
+            "brier": 0.13019602060946853,
+            "ece": 0.046129359164741826,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 133,
+                "predicted": 0.030489447890759858,
+                "observed": 0.022556390977443608
+              },
+              {
+                "bin": 1,
+                "rows": 58,
+                "predicted": 0.09664145959862347,
+                "observed": 0.1206896551724138
+              },
+              {
+                "bin": 2,
+                "rows": 78,
+                "predicted": 0.16101540529575104,
+                "observed": 0.16666666666666666
+              },
+              {
+                "bin": 3,
+                "rows": 64,
+                "predicted": 0.23120184149593115,
+                "observed": 0.125
+              },
+              {
+                "bin": 4,
+                "rows": 49,
+                "predicted": 0.2952035008644571,
+                "observed": 0.30612244897959184
+              },
+              {
+                "bin": 5,
+                "rows": 46,
+                "predicted": 0.36507653995700506,
+                "observed": 0.2826086956521739
+              },
+              {
+                "bin": 6,
+                "rows": 29,
+                "predicted": 0.43561489006568643,
+                "observed": 0.3793103448275862
+              },
+              {
+                "bin": 7,
+                "rows": 19,
+                "predicted": 0.49574984845362213,
+                "observed": 0.3157894736842105
+              },
+              {
+                "bin": 8,
+                "rows": 15,
+                "predicted": 0.5672334949175517,
+                "observed": 0.6666666666666666
+              },
+              {
+                "bin": 9,
+                "rows": 5,
+                "predicted": 0.6114659905433655,
+                "observed": 0.8
+              },
+              {
+                "bin": 10,
+                "rows": 3,
+                "predicted": 0.6932382186253866,
+                "observed": 0.3333333333333333
+              },
+              {
+                "bin": 11,
+                "rows": 2,
+                "predicted": 0.7643451392650604,
+                "observed": 0.5
+              }
+            ]
+          },
+          "item_high_exposure": {
+            "rows": 116246,
+            "positive_rate": 0.3244326686509643,
+            "mean_prediction": 0.3241271662331454,
+            "auc": 0.7446318625450723,
+            "logloss": 0.5430757479667545,
+            "brier": 0.1843864919543047,
+            "ece": 0.0054196157599845024,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 11405,
+                "predicted": 0.03395019286230096,
+                "observed": 0.036124506795265236
+              },
+              {
+                "bin": 1,
+                "rows": 9843,
+                "predicted": 0.1002223992166354,
+                "observed": 0.09773443055978868
+              },
+              {
+                "bin": 2,
+                "rows": 11701,
+                "predicted": 0.16780873948453318,
+                "observed": 0.15938808648833433
+              },
+              {
+                "bin": 3,
+                "rows": 14399,
+                "predicted": 0.23380038432900596,
+                "observed": 0.23133550941037573
+              },
+              {
+                "bin": 4,
+                "rows": 14978,
+                "predicted": 0.29994975878051355,
+                "observed": 0.307717986380024
+              },
+              {
+                "bin": 5,
+                "rows": 13879,
+                "predicted": 0.36605093222597557,
+                "observed": 0.3655162475682686
+              },
+              {
+                "bin": 6,
+                "rows": 12397,
+                "predicted": 0.43255121132928803,
+                "observed": 0.44260708235863516
+              },
+              {
+                "bin": 7,
+                "rows": 9956,
+                "predicted": 0.4983636785123472,
+                "observed": 0.5039172358376858
+              },
+              {
+                "bin": 8,
+                "rows": 7617,
+                "predicted": 0.5645485640714625,
+                "observed": 0.5653144282525929
+              },
+              {
+                "bin": 9,
+                "rows": 5313,
+                "predicted": 0.630938632955395,
+                "observed": 0.6320346320346321
+              },
+              {
+                "bin": 10,
+                "rows": 3213,
+                "predicted": 0.6962284033557465,
+                "observed": 0.6747587924058512
+              },
+              {
+                "bin": 11,
+                "rows": 1305,
+                "predicted": 0.759264699892066,
+                "observed": 0.7226053639846743
+              },
+              {
+                "bin": 12,
+                "rows": 230,
+                "predicted": 0.8204856683378634,
+                "observed": 0.7608695652173914
+              },
+              {
+                "bin": 13,
+                "rows": 10,
+                "predicted": 0.8781854212284088,
+                "observed": 0.8
+              }
+            ]
+          }
+        }
+      }
+    },
+    "random_test": {
+      "long_view": {
+        "rows": 785000,
+        "positive_rate": 0.08711974522292994,
+        "mean_prediction": 0.3151550883570888,
+        "auc": 0.674030495009189,
+        "logloss": 0.44508119026371856,
+        "brier": 0.13876659967121238,
+        "ece": 0.22803534313415885,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 15328,
+            "predicted": 0.050211246853178106,
+            "observed": 0.014091858037578288
+          },
+          {
+            "bin": 1,
+            "rows": 70237,
+            "predicted": 0.10396749283811053,
+            "observed": 0.025513618178452952
+          },
+          {
+            "bin": 2,
+            "rows": 110692,
+            "predicted": 0.1681263883637289,
+            "observed": 0.04124959346655585
+          },
+          {
+            "bin": 3,
+            "rows": 129688,
+            "predicted": 0.2336116516888537,
+            "observed": 0.0589645919437419
+          },
+          {
+            "bin": 4,
+            "rows": 127364,
+            "predicted": 0.2995234127811764,
+            "observed": 0.07613611381552086
+          },
+          {
+            "bin": 5,
+            "rows": 111071,
+            "predicted": 0.365698945591427,
+            "observed": 0.09613670535063158
+          },
+          {
+            "bin": 6,
+            "rows": 88136,
+            "predicted": 0.43190822526481176,
+            "observed": 0.11881637469365526
+          },
+          {
+            "bin": 7,
+            "rows": 62432,
+            "predicted": 0.4977109693530193,
+            "observed": 0.14587070732957458
+          },
+          {
+            "bin": 8,
+            "rows": 38494,
+            "predicted": 0.5636471830470634,
+            "observed": 0.1764690601132644
+          },
+          {
+            "bin": 9,
+            "rows": 20032,
+            "predicted": 0.6293148301607265,
+            "observed": 0.21255990415335463
+          },
+          {
+            "bin": 10,
+            "rows": 8656,
+            "predicted": 0.69467173300532,
+            "observed": 0.261090573012939
+          },
+          {
+            "bin": 11,
+            "rows": 2564,
+            "predicted": 0.7582664685251188,
+            "observed": 0.3073322932917317
+          },
+          {
+            "bin": 12,
+            "rows": 302,
+            "predicted": 0.8173629274431443,
+            "observed": 0.3708609271523179
+          },
+          {
+            "bin": 13,
+            "rows": 4,
+            "predicted": 0.8696762472391129,
+            "observed": 0.75
+          }
+        ],
+        "user_gauc": 0.5750317202166749,
+        "gauc_eligible_users": 16107,
+        "gauc_row_coverage": 0.8079592356687898,
+        "logged_user_day_ndcg@10": 0.6302352507993969,
+        "ndcg_positive_groups": 39500,
+        "ndcg_all_groups": 134295,
+        "ranking_protocol": "observed user-day exposure sets; groups without positives excluded",
+        "slices": {
+          "user_no_prior_exposures": {
+            "rows": 5898,
+            "positive_rate": 0.13377416073245169,
+            "mean_prediction": 0.3835045772615066,
+            "auc": 0.5622899870280359,
+            "logloss": 0.5579429188844856,
+            "brier": 0.18705280515355652,
+            "ece": 0.2497304165290549,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 4,
+                "predicted": 0.04328223317861557,
+                "observed": 0.0
+              },
+              {
+                "bin": 1,
+                "rows": 160,
+                "predicted": 0.10578118097037077,
+                "observed": 0.03125
+              },
+              {
+                "bin": 2,
+                "rows": 287,
+                "predicted": 0.1745741577098594,
+                "observed": 0.07665505226480836
+              },
+              {
+                "bin": 3,
+                "rows": 648,
+                "predicted": 0.23481262217701218,
+                "observed": 0.11574074074074074
+              },
+              {
+                "bin": 4,
+                "rows": 930,
+                "predicted": 0.30196768891426823,
+                "observed": 0.11290322580645161
+              },
+              {
+                "bin": 5,
+                "rows": 1111,
+                "predicted": 0.3677353029257537,
+                "observed": 0.1422142214221422
+              },
+              {
+                "bin": 6,
+                "rows": 1200,
+                "predicted": 0.4326907264192899,
+                "observed": 0.14
+              },
+              {
+                "bin": 7,
+                "rows": 870,
+                "predicted": 0.4960462035461404,
+                "observed": 0.15632183908045977
+              },
+              {
+                "bin": 8,
+                "rows": 467,
+                "predicted": 0.5621982144084171,
+                "observed": 0.17987152034261242
+              },
+              {
+                "bin": 9,
+                "rows": 194,
+                "predicted": 0.6251545877186293,
+                "observed": 0.14948453608247422
+              },
+              {
+                "bin": 10,
+                "rows": 26,
+                "predicted": 0.6848806715928591,
+                "observed": 0.2692307692307692
+              },
+              {
+                "bin": 11,
+                "rows": 1,
+                "predicted": 0.7441217303276062,
+                "observed": 0.0
+              }
+            ]
+          },
+          "user_with_history": {
+            "rows": 779102,
+            "positive_rate": 0.08676655944921204,
+            "mean_prediction": 0.3146376653681114,
+            "auc": 0.6745846355656911,
+            "logloss": 0.4442267983158023,
+            "brier": 0.13840106083299242,
+            "ece": 0.2278711059188993,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 15324,
+                "predicted": 0.05021305552289217,
+                "observed": 0.014095536413469069
+              },
+              {
+                "bin": 1,
+                "rows": 70077,
+                "predicted": 0.10396335182035633,
+                "observed": 0.025500520855630236
+              },
+              {
+                "bin": 2,
+                "rows": 110405,
+                "predicted": 0.1681096272586853,
+                "observed": 0.041157556270096464
+              },
+              {
+                "bin": 3,
+                "rows": 129040,
+                "predicted": 0.23360562077691688,
+                "observed": 0.058679479231246126
+              },
+              {
+                "bin": 4,
+                "rows": 126434,
+                "predicted": 0.2995054336236414,
+                "observed": 0.07586566904471899
+              },
+              {
+                "bin": 5,
+                "rows": 109960,
+                "predicted": 0.3656783709006446,
+                "observed": 0.09567115314659877
+              },
+              {
+                "bin": 6,
+                "rows": 86936,
+                "predicted": 0.43189742419982863,
+                "observed": 0.11852397165731113
+              },
+              {
+                "bin": 7,
+                "rows": 61562,
+                "predicted": 0.4977344959806789,
+                "observed": 0.14572301094831228
+              },
+              {
+                "bin": 8,
+                "rows": 38027,
+                "predicted": 0.5636649774656146,
+                "observed": 0.1764272753569832
+              },
+              {
+                "bin": 9,
+                "rows": 19838,
+                "predicted": 0.6293555140519337,
+                "observed": 0.21317673152535538
+              },
+              {
+                "bin": 10,
+                "rows": 8630,
+                "predicted": 0.6947012309887179,
+                "observed": 0.26106604866743915
+              },
+              {
+                "bin": 11,
+                "rows": 2563,
+                "predicted": 0.7582719873461089,
+                "observed": 0.3074522044479126
+              },
+              {
+                "bin": 12,
+                "rows": 302,
+                "predicted": 0.8173629274431443,
+                "observed": 0.3708609271523179
+              },
+              {
+                "bin": 13,
+                "rows": 4,
+                "predicted": 0.8696762472391129,
+                "observed": 0.75
+              }
+            ]
+          },
+          "item_no_prior_exposures": {
+            "rows": 3293,
+            "positive_rate": 0.10476768903735195,
+            "mean_prediction": 0.3182449338076969,
+            "auc": 0.6695426031895857,
+            "logloss": 0.4556544360325457,
+            "brier": 0.14249196830194732,
+            "ece": 0.213477244770345,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 45,
+                "predicted": 0.05398650198347039,
+                "observed": 0.022222222222222223
+              },
+              {
+                "bin": 1,
+                "rows": 237,
+                "predicted": 0.10568062939095597,
+                "observed": 0.02531645569620253
+              },
+              {
+                "bin": 2,
+                "rows": 440,
+                "predicted": 0.1671752833507278,
+                "observed": 0.04318181818181818
+              },
+              {
+                "bin": 3,
+                "rows": 524,
+                "predicted": 0.23445277641178996,
+                "observed": 0.07061068702290077
+              },
+              {
+                "bin": 4,
+                "rows": 535,
+                "predicted": 0.3014462093883586,
+                "observed": 0.07289719626168224
+              },
+              {
+                "bin": 5,
+                "rows": 556,
+                "predicted": 0.3659051971898662,
+                "observed": 0.13129496402877697
+              },
+              {
+                "bin": 6,
+                "rows": 441,
+                "predicted": 0.43317930822740064,
+                "observed": 0.16780045351473924
+              },
+              {
+                "bin": 7,
+                "rows": 345,
+                "predicted": 0.49706520109936814,
+                "observed": 0.17391304347826086
+              },
+              {
+                "bin": 8,
+                "rows": 141,
+                "predicted": 0.5589281705254359,
+                "observed": 0.2127659574468085
+              },
+              {
+                "bin": 9,
+                "rows": 29,
+                "predicted": 0.6223804395774315,
+                "observed": 0.20689655172413793
+              }
+            ]
+          },
+          "item_low_exposure": {
+            "rows": 96590,
+            "positive_rate": 0.061652344963246716,
+            "mean_prediction": 0.306924844740412,
+            "auc": 0.6637194119278862,
+            "logloss": 0.41950015903877813,
+            "brier": 0.12623987351572424,
+            "ece": 0.2452724997771653,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 1056,
+                "predicted": 0.052549813106783076,
+                "observed": 0.00946969696969697
+              },
+              {
+                "bin": 1,
+                "rows": 7412,
+                "predicted": 0.10562485140028093,
+                "observed": 0.014840798704803022
+              },
+              {
+                "bin": 2,
+                "rows": 13895,
+                "predicted": 0.16856741898777933,
+                "observed": 0.02835552356962936
+              },
+              {
+                "bin": 3,
+                "rows": 17329,
+                "predicted": 0.23379013065881396,
+                "observed": 0.04033700732875527
+              },
+              {
+                "bin": 4,
+                "rows": 17751,
+                "predicted": 0.2996200601837412,
+                "observed": 0.05785589544251028
+              },
+              {
+                "bin": 5,
+                "rows": 15559,
+                "predicted": 0.3656417142303646,
+                "observed": 0.07256250401696768
+              },
+              {
+                "bin": 6,
+                "rows": 11507,
+                "predicted": 0.43099388744877287,
+                "observed": 0.0922047449378639
+              },
+              {
+                "bin": 7,
+                "rows": 7139,
+                "predicted": 0.4965026721406307,
+                "observed": 0.11346126908530607
+              },
+              {
+                "bin": 8,
+                "rows": 3380,
+                "predicted": 0.5622842426659793,
+                "observed": 0.13402366863905327
+              },
+              {
+                "bin": 9,
+                "rows": 1217,
+                "predicted": 0.6260470787129053,
+                "observed": 0.161873459326212
+              },
+              {
+                "bin": 10,
+                "rows": 309,
+                "predicted": 0.6892739669404755,
+                "observed": 0.19741100323624594
+              },
+              {
+                "bin": 11,
+                "rows": 36,
+                "predicted": 0.7481455869144864,
+                "observed": 0.1111111111111111
+              }
+            ]
+          },
+          "item_high_exposure": {
+            "rows": 272423,
+            "positive_rate": 0.11891066466487778,
+            "mean_prediction": 0.3396623926571058,
+            "auc": 0.6772549240877533,
+            "logloss": 0.4869711598523208,
+            "brier": 0.1572526846223027,
+            "ece": 0.22075459567353042,
+            "calibration": [
+              {
+                "bin": 0,
+                "rows": 4714,
+                "predicted": 0.049684267911521064,
+                "observed": 0.017819261773440814
+              },
+              {
+                "bin": 1,
+                "rows": 20252,
+                "predicted": 0.10398720984838118,
+                "observed": 0.03253999604977286
+              },
+              {
+                "bin": 2,
+                "rows": 32528,
+                "predicted": 0.1683276615202229,
+                "observed": 0.05275454992621741
+              },
+              {
+                "bin": 3,
+                "rows": 40301,
+                "predicted": 0.2338945779165841,
+                "observed": 0.07384432148085655
+              },
+              {
+                "bin": 4,
+                "rows": 41885,
+                "predicted": 0.2997754370680968,
+                "observed": 0.09375671481437269
+              },
+              {
+                "bin": 5,
+                "rows": 38751,
+                "predicted": 0.36618317463057065,
+                "observed": 0.12128719258857835
+              },
+              {
+                "bin": 6,
+                "rows": 33634,
+                "predicted": 0.43242441886081107,
+                "observed": 0.1496402449901885
+              },
+              {
+                "bin": 7,
+                "rows": 25882,
+                "predicted": 0.49823378714603356,
+                "observed": 0.1819024804883703
+              },
+              {
+                "bin": 8,
+                "rows": 17712,
+                "predicted": 0.5640294588967659,
+                "observed": 0.21781842818428185
+              },
+              {
+                "bin": 9,
+                "rows": 10164,
+                "predicted": 0.6299561821114872,
+                "observed": 0.25600157418339237
+              },
+              {
+                "bin": 10,
+                "rows": 4854,
+                "predicted": 0.6952408648441002,
+                "observed": 0.3061392665842604
+              },
+              {
+                "bin": 11,
+                "rows": 1534,
+                "predicted": 0.7584086850071824,
+                "observed": 0.3604954367666232
+              },
+              {
+                "bin": 12,
+                "rows": 209,
+                "predicted": 0.8179893701840816,
+                "observed": 0.4258373205741627
+              },
+              {
+                "bin": 13,
+                "rows": 3,
+                "predicted": 0.8697962760925293,
+                "observed": 1.0
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "test_evaluated": true,
+  "test_evaluation_seconds": 36.5888845999998,
+  "test_freeze_sha256": "6c1c09a169e75674a9fe272540f2de8871269347303e74bad4241bc1416f5b6b"
+}

@@ -2,6 +2,16 @@
 
 围绕短视频推荐的长播预测，比较单任务、共享底层和任务独立专家路由，并检查模型在随机曝光流量上的表现变化。代码使用真实 KuaiRand-Pure 曝光日志，实验结果由训练脚本生成。
 
+## 已完成的实测
+
+已处理 **262 万真实曝光**，用同一批 25 万训练样本完成 **6 种模型配置、14 个运行**；神经模型各 3 个 seed，所有测试均在验证选择冻结后评估。**20 项本地测试通过**。
+
+- 验证集选择 LR，普通测试 AUC **0.7514**；MMoE 在不同 seed 下的收益不稳定，容量匹配对照亦未证明稳定优势。
+- LightGBM 的随机曝光测试 LogLoss 经独立 Platt 校准从 **0.4833 降至 0.2787**，优于平均正例率常数基线 **0.2960**；排序与 AUC 不变。
+- 真实 24 候选、4 并发本机 CPU 压测：HTTP p95 **123 ms**，候选编码诊断及评分 p95 **30 ms**；接口概率与离线输出完全一致。
+
+查看 [实验报告](docs/experiment_report.md)、[自动指标表](results/comparison.html) 和 [简历条目与面试准备](docs/resume.md)。数据、训练模型和逐行预测已保留本机，Git 不包含这些大文件。
+
 ## 要回答的问题
 
 1. 加入点击/有效播放和点赞任务，能否改善长播预测，还是产生负迁移？
@@ -59,22 +69,24 @@ $env:PYTHONPATH = "src"
 .\.venv\Scripts\python.exe scripts/download_data.py
 .\.venv\Scripts\python.exe -m kuai_rank.cli prepare
 .\.venv\Scripts\python.exe -m pytest -q
-.\.venv\Scripts\python.exe scripts/run_experiments.py --seeds 2026
+.\.venv\Scripts\python.exe scripts/run_experiments.py --out artifacts/reproduction --seeds 2026 --models lr lightgbm deepfm sharedbottom mmoe deepfm_matched
 ```
 
 默认 `configs/pure.json` 使用固定抽样的 25 万训练曝光，验证集不抽样。所有模型及 seed 使用同一批训练样本；ID 词表和数值归一化也由该批样本拟合。设置 `max_train_rows` 为 0 可使用完整训练集。相同 seed 的结果目录不会被覆盖，不完整的运行需要检查后选择新的目录重跑。
 
-LR 和 LightGBM 各运行一个 seed，三个神经模型默认运行三个 seed。当前本机软件版本保存在 `configs/local_environment.json`；每次训练也独立记录版本与源码哈希。
+仓库内 `results/initial` 和 `results/repeated` 是已完成实验的指标归档，克隆时不包含模型、编码器或逐行预测。复现请使用上面的新目录 `artifacts/reproduction`，避免已归档 `metrics.json` 被调度器视为已完成而跳过训练。省略 `--seeds 2026` 可按配置运行三个 seed。
+
+LR 和 LightGBM 各运行一个 seed，四种神经模型配置各运行三个 seed，共 14 个运行。当前本机软件版本保存在 `configs/local_environment.json`；每次训练也独立记录版本与源码哈希。
 
 本机在首轮训练后使用 `configs/cpu.json` 的单线程配置继续剩余实验，减少 CPU 争用；每个运行记录真实线程数。训练调度在单个进程内复用已加载依赖，不为每个模型重新启动 Python。
 
 完成验证集上的配置选择后，再冻结配置并开启最终测试：
 
 ```powershell
-.\.venv\Scripts\python.exe scripts/finalize_evaluation.py --runs results/initial
+.\.venv\Scripts\python.exe scripts/finalize_evaluation.py --runs artifacts/reproduction
 ```
 
-测试结果应一次性用于报告，不应继续据此调参。不同 seed 的标准差衡量初始化波动，不能代替用户级 bootstrap 的置信区间。MMoE 参数量可能更多，报告会列出参数量；容量匹配实验需要独立配置和结果目录。
+测试结果应一次性用于报告，不应继续据此调参。不同 seed 的标准差衡量初始化波动，不能代替用户级 bootstrap 的置信区间。报告同时列出模型参数量；`deepfm_matched` 在相同训练样本和编码器条件下提供容量匹配对照。
 
 `finalize_evaluation.py` 先保存验证集选择结果及运行指纹，再加载既有 checkpoint 评估测试集，不重新训练，也不根据测试结果挑选模型。已有 test freeze 不会被覆盖；中断后只能在模型、数据和验证产物未变化的情况下继续尚未完成的运行。
 
@@ -109,6 +121,8 @@ $env:KUAI_RANK_RUN = "results/initial/lightgbm_s2026"
 
 打开 `http://127.0.0.1:8000/docs`。`POST /rank` 接收 1–500 个候选，每个候选需提供训练配置中完整的 categorical/numeric 特征字典；特征值为编码前值。调用者负责确保特征在请求时刻可用。接口拒绝重复候选、缺失/多余特征和非有限数值，并返回长播排序及未知类别比例。
 
+本机既有模型可直接用上述路径；从克隆复现则将 `KUAI_RANK_RUN` 和校准命令的 `--run` 改为 `artifacts/reproduction/lightgbm_s2026`。原实验冻结清单位于 `results/test_freeze.json`。
+
 这是模型评分服务，未包含在线特征生成或召回服务。只应加载由本项目产生、可信的本地模型和 pickle 文件。
 
 在另一个终端生成真实曝光特征请求并测试接口：
@@ -138,8 +152,8 @@ $env:KUAI_RANK_RUN = "results/initial/lightgbm_s2026"
 
 ## 项目扩展顺序
 
-1. 多 seed 对照、参数容量匹配、任务权重与历史特征消融。
-2. 随机曝光概率校准、共同视频支持集及 UI/日期分层诊断。
+1. 任务权重与历史特征消融，验证当前复杂模型收益不稳定的原因。
+2. 共同视频支持集及 UI/日期分层诊断，进一步解释曝光分布变化。
 3. PLE 与梯度冲突分析，在真实负迁移问题上验证价值。
 4. 迁移 KuaiRand-1K，加入热门/ItemCF/双塔召回和 FAISS；分别评估召回上限、排序与端到端效果。
 
@@ -147,4 +161,4 @@ $env:KUAI_RANK_RUN = "results/initial/lightgbm_s2026"
 
 算法与实验组织参考：[FuxiCTR](https://github.com/reczoo/FuxiCTR)、[DeepCTR-Torch](https://github.com/shenweichen/DeepCTR-Torch)、[KuairandRec](https://github.com/Under-the-dome/KuairandRec)、[debiased-video-recsys](https://github.com/shuaihuang028/debiased-video-recsys)。本项目实现独立编写，未复制上述项目的实验结果。
 
-在正式实验完成前不填写提升数字、不宣称工业上线、不把短视频行为概率称为广告 CVR。简历应明确公开数据、离线协议、个人实现范围和可复现实测结果。
+已完成的真实实验及适用边界见 `docs/experiment_report.md`；可修改使用的简历条目和面试准备见 `docs/resume.md`。不宣称工业上线，不把短视频行为概率称为广告 CVR。

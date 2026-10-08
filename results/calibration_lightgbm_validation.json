@@ -1,0 +1,192 @@
+{
+  "base_model": "lightgbm",
+  "seed": 2026,
+  "primary_task": "long_view",
+  "parameters": {
+    "slope": 1.0279230808364515,
+    "intercept": -1.8923442254306448
+  },
+  "calibration_rows": 163771,
+  "calibration_sha256": "921fb6f1f659fcd81f47cf7a8df56da5e0308d0c69797075bc395d99b8a1da7d",
+  "base_artifacts": {
+    "encoder.pkl": "4f8d4f8d7d1ecc6ed12982f52714224fb5aee72c27317413fd9e5ffce0135bda",
+    "lightgbm.txt": "fb8981e559568efa34f848671001b9bf0f893c19be7168e554fc5249f096bf27"
+  },
+  "metrics": {
+    "random_valid": {
+      "raw": {
+        "rows": 237288,
+        "positive_rate": 0.08003776002157716,
+        "mean_prediction": 0.3433038002000363,
+        "auc": 0.6984246677109838,
+        "logloss": 0.4714302211305011,
+        "brier": 0.1495066836250487,
+        "ece": 0.26326604017845917,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 985,
+            "predicted": 0.05414126638040523,
+            "observed": 0.01116751269035533
+          },
+          {
+            "bin": 1,
+            "rows": 12317,
+            "predicted": 0.10844737537384957,
+            "observed": 0.01696841763416416
+          },
+          {
+            "bin": 2,
+            "rows": 33863,
+            "predicted": 0.16839648012194777,
+            "observed": 0.026046127041313528
+          },
+          {
+            "bin": 3,
+            "rows": 35989,
+            "predicted": 0.23264662168982497,
+            "observed": 0.03945650059740476
+          },
+          {
+            "bin": 4,
+            "rows": 37052,
+            "predicted": 0.3009694082817991,
+            "observed": 0.05770268811400194
+          },
+          {
+            "bin": 5,
+            "rows": 35486,
+            "predicted": 0.36575070154527217,
+            "observed": 0.07735444964211238
+          },
+          {
+            "bin": 6,
+            "rows": 28889,
+            "predicted": 0.432386904063222,
+            "observed": 0.1056803627678355
+          },
+          {
+            "bin": 7,
+            "rows": 23527,
+            "predicted": 0.49918391875580775,
+            "observed": 0.1302758532749607
+          },
+          {
+            "bin": 8,
+            "rows": 16955,
+            "predicted": 0.5635574678881744,
+            "observed": 0.1614273075788853
+          },
+          {
+            "bin": 9,
+            "rows": 8069,
+            "predicted": 0.6279132706623527,
+            "observed": 0.20832816953773703
+          },
+          {
+            "bin": 10,
+            "rows": 2743,
+            "predicted": 0.6947252478132573,
+            "observed": 0.2541013488880787
+          },
+          {
+            "bin": 11,
+            "rows": 1035,
+            "predicted": 0.7610304464863761,
+            "observed": 0.25024154589371983
+          },
+          {
+            "bin": 12,
+            "rows": 301,
+            "predicted": 0.8246022589797836,
+            "observed": 0.23920265780730898
+          },
+          {
+            "bin": 13,
+            "rows": 77,
+            "predicted": 0.887557961786035,
+            "observed": 0.2987012987012987
+          }
+        ]
+      },
+      "calibrated": {
+        "rows": 237288,
+        "positive_rate": 0.08003776002157716,
+        "mean_prediction": 0.08191415107549817,
+        "auc": 0.6984246677109838,
+        "logloss": 0.26055314310014327,
+        "brier": 0.07082330112576551,
+        "ece": 0.0027258490334652,
+        "calibration": [
+          {
+            "bin": 0,
+            "rows": 115755,
+            "predicted": 0.039905757116376755,
+            "observed": 0.037708954256835556
+          },
+          {
+            "bin": 1,
+            "rows": 82641,
+            "predicted": 0.09417358185879628,
+            "observed": 0.09484396365000423
+          },
+          {
+            "bin": 2,
+            "rows": 30011,
+            "predicted": 0.1596162638328173,
+            "observed": 0.15624271100596449
+          },
+          {
+            "bin": 3,
+            "rows": 6511,
+            "predicted": 0.22422942218342626,
+            "observed": 0.23114728920288743
+          },
+          {
+            "bin": 4,
+            "rows": 1552,
+            "predicted": 0.29448553114418274,
+            "observed": 0.25
+          },
+          {
+            "bin": 5,
+            "rows": 522,
+            "predicted": 0.3617143107655654,
+            "observed": 0.24904214559386972
+          },
+          {
+            "bin": 6,
+            "rows": 173,
+            "predicted": 0.4280396446461524,
+            "observed": 0.26011560693641617
+          },
+          {
+            "bin": 7,
+            "rows": 69,
+            "predicted": 0.4944677874017909,
+            "observed": 0.21739130434782608
+          },
+          {
+            "bin": 8,
+            "rows": 40,
+            "predicted": 0.5617003406267823,
+            "observed": 0.2
+          },
+          {
+            "bin": 9,
+            "rows": 13,
+            "predicted": 0.6129052361980095,
+            "observed": 0.6153846153846154
+          },
+          {
+            "bin": 10,
+            "rows": 1,
+            "predicted": 0.6923931753113088,
+            "observed": 1.0
+          }
+        ]
+      }
+    }
+  },
+  "scope": "Platt scaling from random calibration labels; supervised probability calibration, not causal debiasing"
+}

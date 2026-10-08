@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.json -text
+*.png -text
+*.pkl -text
+*.npz -text
+*.pt -text

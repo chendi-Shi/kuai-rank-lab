@@ -1,0 +1,12 @@
+{
+  "window_UTC8": "2022-04-26 through 2022-04-30",
+  "standard_rows": 79937,
+  "random_rows": 237288,
+  "common_videos": 5251,
+  "common_users": 16394,
+  "random_rows_video_in_standard_support": 0.709125619500354,
+  "random_rows_user_in_standard_support": 0.8245128282930447,
+  "standard_long_view_rate": 0.3062786944718966,
+  "random_long_view_rate": 0.08003776002157716,
+  "caution": "Date-aligned observational comparison; support, scenario mix and exposure policy can differ. Not a causal estimate."
+}

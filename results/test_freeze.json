@@ -1,0 +1,30 @@
+{
+  "utc_time": "2026-10-08T10:42:51.011248+00:00",
+  "selection_metric": "mean validation primary LogLoss",
+  "selected_model": "lr",
+  "validation_losses": {
+    "deepfm": 0.5218984712763456,
+    "deepfm_matched": 0.5217043047852864,
+    "lightgbm": 0.5248783338754458,
+    "lr": 0.5216135695022883,
+    "mmoe": 0.5218713870081287,
+    "sharedbottom": 0.5222490512364651
+  },
+  "runs_before_test": {
+    "results\\initial\\deepfm_matched_s2026\\metrics.json": "0ee494f8550d28b595c4fee80f9db77582a35191d91a2e8bb79afa1cd34261b9",
+    "results\\initial\\deepfm_s2026\\metrics.json": "ca6b9bcf8bc6bf0c6023bc57abf8eda71ac12b98098e17112b68b54a514556f9",
+    "results\\initial\\lightgbm_s2026\\metrics.json": "c6b22e88d0514d29006d027574430c40324c720734f2e3515fd00356fb96fc9e",
+    "results\\initial\\lr_s2026\\metrics.json": "986a2b2304f83b93ab505594b53e8d05c3ef8e88e9e4baf90339aab41b6ea477",
+    "results\\initial\\mmoe_s2026\\metrics.json": "205c12da52e7620c50a0c381741741b390baa309275d531c69d0471d0333a7e9",
+    "results\\initial\\sharedbottom_s2026\\metrics.json": "d90f0b89d2dd7c9f4b13d3bf505f427a1b66831145234668c015a695e7eacbfa",
+    "results\\repeated\\deepfm_matched_s2027\\metrics.json": "a19edc03d617de201051525f3040d9d2fc3133e927c46512fbf8ff281bab522f",
+    "results\\repeated\\deepfm_matched_s2028\\metrics.json": "6af0c5841a0a3473aff110de1dc593616ce61eb8504b4ac4154463194d97f235",
+    "results\\repeated\\deepfm_s2027\\metrics.json": "81a890f99a17785674c39320cad8e7fb17b0bb28bb56757c219331167b5c9721",
+    "results\\repeated\\deepfm_s2028\\metrics.json": "67f2e761715bcc2b5d56f6c03d7548d640871cd4352162b2dbf0fccc28dd06a6",
+    "results\\repeated\\mmoe_s2027\\metrics.json": "8313bec627e092897f8cf984eb546b719c4311bbada87b7c078e3ea36f4dd555",
+    "results\\repeated\\mmoe_s2028\\metrics.json": "9382b2d6afd3504227d6df3415929f2460c070f68c6c58767b1c3b04575a08a2",
+    "results\\repeated\\sharedbottom_s2027\\metrics.json": "5df852401ca750d7008a5bc33a06792d966151cc3aa06a73b2b975b7ae67ec01",
+    "results\\repeated\\sharedbottom_s2028\\metrics.json": "be148ba5865b939255459a9d10af0d331773fd30e566604b3b1827355f1d6e2e"
+  },
+  "data_manifest_sha256": "fdc35f184ef96f2c7cb0b3fd459f6cc3fe3b34dc4eb067c89e1f930f6b9e39ce"
+}

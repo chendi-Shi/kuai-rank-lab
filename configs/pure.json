@@ -1,0 +1,22 @@
+{
+  "dataset": "KuaiRand-Pure",
+  "train_end": "2022-04-22",
+  "valid_end": "2022-05-01",
+  "random_calibration_end": "2022-04-26",
+  "random_valid_end": "2022-05-01",
+  "tasks": ["long_view", "is_click", "is_like"],
+  "categorical": ["user_id", "video_id", "author_id", "tab", "video_type", "upload_type", "music_type", "tag_first"],
+  "numeric": ["duration_log", "aspect_ratio", "video_age_log", "hour_sin", "hour_cos", "weekday_sin", "weekday_cos", "user_count_log", "user_long_view_rate", "user_is_click_rate", "user_is_like_rate", "item_count_log", "item_long_view_rate", "item_is_click_rate", "item_is_like_rate", "author_count_log", "author_long_view_rate", "author_is_click_rate", "author_is_like_rate"],
+  "embedding_dim": 12,
+  "hidden_dim": 96,
+  "experts": 4,
+  "batch_size": 2048,
+  "epochs": 5,
+  "patience": 2,
+  "learning_rate": 0.001,
+  "weight_decay": 0.00001,
+  "task_weights": [1.0, 0.3, 0.1],
+  "max_train_rows": 250000,
+  "seeds": [2026, 2027, 2028],
+  "threads": 4
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kuai-rank-lab"
+version = "0.1.0"
+description = "Reproducible multi-objective ranking on real KuaiRand exposure logs"
+requires-python = ">=3.10,<3.14"
+dependencies = ["numpy>=1.26", "pandas>=2.2", "torch>=2.2", "scikit-learn>=1.5", "lightgbm>=4.5", "pyarrow>=16", "fastapi>=0.115", "uvicorn>=0.30"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+plot = ["matplotlib>=3.8"]
+
+[project.scripts]
+kuai-rank = "kuai_rank.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,11 @@
+{
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "torch": "2.14.0+cpu",
+  "scikit-learn": "1.7.2",
+  "lightgbm": "4.7.0",
+  "pyarrow": "25.0.1",
+  "fastapi": "0.142.4",
+  "uvicorn": "0.54.0",
+  "pytest": "9.1.1"
+}

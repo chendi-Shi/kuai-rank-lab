@@ -1,0 +1,40 @@
+{
+  "config": {
+    "train_cutoff": "2022-04-22",
+    "test_cutoff": "2022-05-01",
+    "seed": 2026,
+    "dim": 32,
+    "epochs": 5,
+    "batch_size": 512,
+    "max_positive_pairs": 100000,
+    "learning_rate": 0.002,
+    "temperature": 0.1,
+    "itemcf_neighbors": 80,
+    "eval_users": 1000,
+    "recall_k": 300,
+    "output_k": 10,
+    "author_cap": 2,
+    "ranker": "results/initial/lr_s2026"
+  },
+  "selected_route": "itemcf",
+  "ranking_model_weight": 0.0,
+  "selection_metric": "validation recall@300, then capped NDCG@10 for ranking blend",
+  "prepared_split_sha256": {
+    "train.parquet": "4555c6f9c35480474919af36093ae75c43b55e247eac753cc45ea0557dc32403",
+    "valid.parquet": "0b127f40169e516210b55dcfe48022985a9fd45c9725af7a4616fd0d7da82564",
+    "test.parquet": "33ccf0a4e7db3836f8d67c6b527aa7254437798f11e88f439580d95554c2f272",
+    "random_calibration.parquet": "921fb6f1f659fcd81f47cf7a8df56da5e0308d0c69797075bc395d99b8a1da7d",
+    "random_valid.parquet": "5f96199392fa262d796cf1f07afb4902fae109ade38d4f5fbfed225b475533ba",
+    "random_test.parquet": "0dd3746b254248c75d3fa35f06dd1a699ebf2ba2c9b1764b591f348665a80e5c"
+  },
+  "ranker_metrics_sha256": "be3d0495b38d6d92fc17547de48c5038b6c074b55c0469520f41b62d17c81e32",
+  "retrieval_metadata_sha256": "61f36501e9d4ebbbda882dd9083955c64d4ba9bc2eee14e53972c0dc4a1b4059",
+  "source_sha256": {
+    "snapshot.py": "e8ca0a93a87a10199384bfc22c6bd5f16cd13bc1fb5d2dce31bdd9e6c46cc114",
+    "retrieval.py": "22562450b26c268e19ad7bc21f232c65f938bd96a8a744eef2cbfdd44919044c",
+    "pipeline.py": "936581c3d21288a7609c2577387c4b553d6426a3fdf3bc1a11b9f729cf49b13f",
+    "retrieval_metrics.py": "6fb1429d93075045ba62fe7d9d7c49849195852a8480658ecc1633e534e8c0ef",
+    "inference.py": "7ff03157e49ec63e0856a2e8e78576418fe219484e17d0031b4ab2a3e7a08815"
+  },
+  "scope": "Extension test reuses the previously reported ranking holdout; not a fresh blind dataset."
+}

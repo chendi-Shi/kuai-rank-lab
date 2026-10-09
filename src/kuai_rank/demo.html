@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KuaiRank 推荐链路演示</title>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#f3f5f9;color:#17233a}main{max-width:1050px;margin:48px auto;padding:0 24px}h1{font-size:32px;margin-bottom:12px}.sub{color:#62708a;line-height:1.8}.steps{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.steps span{padding:12px 18px;background:#e2eafa;border-radius:8px}form{padding:24px;background:white;border-radius:12px;display:flex;gap:16px;align-items:end;flex-wrap:wrap}label{display:grid;gap:8px;font-size:14px}input,select,button{font:inherit;padding:12px;border:1px solid #ccd4e3;border-radius:6px}button{background:#285bc4;color:white;cursor:pointer}table{width:100%;border-collapse:collapse;background:white;margin:24px 0;border-radius:12px;overflow:hidden}th,td{text-align:left;padding:14px;border-bottom:1px solid #e6eaf1;font-size:14px}th{background:#182d50;color:white}#status{margin:20px 0;line-height:1.8}.warn{color:#ad3828}.foot{font-size:13px;color:#62708a;line-height:1.8}
+</style><main>
+<h1>从用户 ID 到推荐列表</h1><p class="sub">真实 KuaiRand 数据训练的推荐项目。输入用户 ID，观察召回、过滤、特征生成与精排后的结果。</p>
+<p class="sub" id="health">正在连接服务…</p>
+<div class="steps"><span>① 多路召回</span><span>② 去重、过滤已看</span><span>③ 历史特征</span><span>④ 长播预测</span><span>⑤ 作者多样性</span></div>
+<form id="form"><label>用户 ID<input id="user" required maxlength="100"></label><label>召回方式<select id="route"><option value="">验证集选择的默认方式</option value="popular">热门</option><option value="itemcf">ItemCF 同看</option><option value="dual_tower">双塔向量</option><option value="fusion">三路融合</option></select></label><label>推荐条数<input id="k" type="number" min="1" max="50" value="10"></label><button>生成推荐</button></form>
+<div id="status"></div><table><thead><tr><th>顺序</th><th>视频 ID</th><th>作者 ID</th><th>预测长播分数</th><th>召回来源</th></tr></thead><tbody id="rows"></tbody></table>
+<p class="foot">使用 2022 年历史快照重放，非当前快手线上内容。未曝光视频的真实反馈未知，显示的分数不能解释为已验证的线上观看概率。无历史用户走热门兜底，普通日志已看视频不会重复推荐，同一作者最多 2 条。</p>
+</main><script>
+const status = document.getElementById('status');
+fetch('/health').then(r=>r.json()).then(h=>{
+document.getElementById('health').textContent=`视频池 ${h.catalog_videos} 个 · 历史快照 ${new Date(h.snapshot_ms).toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'})} · 默认召回 ${h.route} · 模型排序权重 ${h.ranking_model_weight}${h.ranking_model_weight===0?'（保留召回顺序）':''}`;
+document.getElementById('user').value=h.demo_user;
+}).catch(()=>{document.getElementById('health').textContent='服务连接失败';});
+document.getElementById('form').addEventListener('submit',async event=>{
+event.preventDefault();status.className='';status.textContent='正在召回和排序…';
+try{
+const body={user_id:document.getElementById('user').value,k:Number(document.getElementById('k').value)};
+const route=document.getElementById('route').value;if(route)body.route=route;
+const response=await fetch('/recommend',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+const result=await response.json();if(!response.ok)throw new Error(result.detail||'请求失败');
+status.textContent=`召回 ${result.candidate_count} 个候选，推荐 ${result.ranking.length} 条 · ${result.cold_user?'训练期未见用户':'训练期已知用户'} · 召回 ${result.timing_ms.recall.toFixed(1)} ms / 特征 ${result.timing_ms.features.toFixed(1)} ms / 精排与多样性 ${result.timing_ms.ranking_and_diversity.toFixed(1)} ms`;
+const rows=document.getElementById('rows');rows.replaceChildren();
+result.ranking.forEach((item,i)=>{const tr=document.createElement('tr');[i+1,item.video_id,item.author_id,item.scores.long_view.toFixed(4),item.recall_sources.join(' / ')].forEach(value=>{const td=document.createElement('td');td.textContent=value;tr.append(td);});rows.append(tr);});
+}catch(error){status.className='warn';status.textContent=error.message;}
+});
+</script></html>

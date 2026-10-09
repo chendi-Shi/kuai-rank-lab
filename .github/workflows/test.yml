@@ -11,5 +11,5 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
-      - run: pip install -e '.[dev]'
+      - run: pip install -e '.[dev,retrieval]'
       - run: pytest -q

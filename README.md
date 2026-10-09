@@ -1,10 +1,14 @@
-# KuaiRank Lab：真实曝光日志上的多目标精排
+# KuaiRank Lab：真实短视频数据上的召回与精排链路
 
-围绕短视频推荐的长播预测，比较单任务、共享底层和任务独立专家路由，并检查模型在随机曝光流量上的表现变化。代码使用真实 KuaiRand-Pure 曝光日志，实验结果由训练脚本生成。
+从用户 ID 出发，完成热门 / ItemCF / 双塔召回、FAISS 向量检索、已看过滤、候选融合、前日历史特征、长播精排和作者多样性。代码使用真实 KuaiRand-Pure 曝光日志，实验结果由训练脚本生成。
+
+先读 [从一条请求讲清楚项目](docs/walkthrough.md)。这个完整链路针对训练期已知的 **7,538 视频池**，不是快手全平台内容；服务使用历史日期快照，供离线复现和本机演示。
+
+完整链路实测见 [端到端报告](docs/pipeline_report.md)：测试 ItemCF Recall@300 **51.45%**，热门基线 **43.50%**。验证集选择 ItemCF 且模型排序权重为 **0**，原曝光分类模型没有改善当前候选排序指标；默认列表保留召回顺序，模型分数作为诊断返回。
 
 ## 已完成的实测
 
-已处理 **262 万真实曝光**，用同一批 25 万训练样本完成 **6 种模型配置、14 个运行**；神经模型各 3 个 seed，所有测试均在验证选择冻结后评估。**28 项本地测试通过**。
+已处理 **262 万真实曝光**，用同一批 25 万训练样本完成 **6 种精排模型配置、14 个运行**；神经精排模型各 3 个 seed，所有测试均在验证选择冻结后评估。完整链路加入 1 个 ID 双塔初始化及 ItemCF、热门召回，**37 项本地测试通过**。
 
 - 验证集选择 LR，普通测试 AUC **0.7514**；MMoE 在不同 seed 下的收益不稳定，容量匹配对照亦未证明稳定优势。
 - LightGBM 的随机曝光测试 LogLoss 经独立 Platt 校准从 **0.4833 降至 0.2787**，优于平均正例率常数基线 **0.2960**；排序与 AUC 不变。
@@ -35,7 +39,46 @@
 - 独立随机曝光 calibration 切分上的 Platt 概率校准，验证与测试分别报告。
 - 加载真实训练产物的 FastAPI 候选评分接口。
 
-当前范围为**精排实验和候选评分服务**。召回、全库推荐、实时反馈、生产 A/B 测试和 PLE 尚未实现。不能把本项目描述为完整上线推荐系统。
+当前已实现**候选池内的完整推荐链路和演示服务**：输入用户 ID，系统自行召回、生成特征、评分、约束作者后返回推荐。实时业务数据管道、全平台视频库与线上 A/B 需要真实业务环境；本项目不宣称工业上线。PLE 不是本项目完整性的必需条件，现有多任务对照采用 Shared-Bottom 和 MMoE。
+
+## 完整链路运行
+
+本机已有原精排模型，可直接运行：
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,retrieval]"
+.\.venv\Scripts\python.exe scripts/run_end_to_end.py
+$env:OMP_NUM_THREADS = "1"
+$env:MKL_NUM_THREADS = "1"
+.\.venv\Scripts\python.exe -m uvicorn kuai_rank.recommend_api:create_app --factory --host 127.0.0.1 --port 8766
+```
+
+打开 `http://127.0.0.1:8766/` 演示页或 `/docs`。`POST /recommend` 接受 `{"user_id":"某用户ID","k":10}`，不需要手工提供特征。未知用户使用热门兜底；跨越快照当天的时间戳被拒绝。默认使用 2022-05-01 快照，中午请求场景。
+
+`run_end_to_end.py` 建立 2022-04-22 和 2022-05-01 两个历史快照，以 10 万去重长播用户视频对训练 ID 双塔，保存 ItemCF 邻居与 FAISS Flat/HNSW 索引；在验证集选择召回路由和排序融合权重，保存指纹后再报告测试。每个日期最多固定抽取 1,000 个具有池内新长播目标的用户。只知道已观测正例，不能把池内未曝光视频当作已知不相关。
+
+扩展任务沿用原精排已报告过的测试日期，不称作一份新的盲测数据。已看过滤只使用普通历史日志。
+
+产物位于 `artifacts/end_to_end`，汇总报告位于 `results/end_to_end.json`。所有指标依脚本生成；完成报告不覆盖，未完成索引阶段可恢复已训练权重。
+
+从 GitHub 克隆后，先按下文复现精排到 `artifacts/reproduction`，再生成独立配置指向本机模型：
+
+```powershell
+$pipelineConfig = Get-Content configs/end_to_end.json -Raw | ConvertFrom-Json
+$pipelineConfig.ranker = "artifacts/reproduction/lr_s2026"
+$pipelineConfig | ConvertTo-Json -Depth 10 | Set-Content artifacts/pipeline-local.json -Encoding utf8
+.\.venv\Scripts\python.exe scripts/run_end_to_end.py --config artifacts/pipeline-local.json --report artifacts/pipeline-report.json
+```
+
+模型、向量、索引和特征快照都不提交 Git，复现需自行生成。`results/end_to_end.json` 是本机原实验记录，并不代表克隆后已有可加载模型。
+
+全链路 HTTP 测试：
+
+```powershell
+.\.venv\Scripts\python.exe scripts/benchmark_recommendation.py
+```
+
+该压测覆盖本机内存中的召回、特征、精排与多样性，混合多个实际用户和未知用户，不含外部特征数据库网络开销。索引邻居一致率与推荐 Recall 分开报告。
 
 ## 数据与防泄漏协议
 
@@ -159,7 +202,7 @@ $env:KUAI_RANK_RUN = "results/initial/lightgbm_s2026"
 1. 任务权重与历史特征消融，验证当前复杂模型收益不稳定的原因。
 2. 共同视频支持集及 UI/日期分层诊断，进一步解释曝光分布变化。
 3. PLE 与梯度冲突分析，在真实负迁移问题上验证价值。
-4. 迁移 KuaiRand-1K，加入热门/ItemCF/双塔召回和 FAISS；分别评估召回上限、排序与端到端效果。
+4. 迁移 KuaiRand-1K 扩大完整历史和视频覆盖；当前 Pure 已实现热门/ItemCF/双塔和 FAISS，但不等于全平台召回。
 
 ## 参考与简历表述
 

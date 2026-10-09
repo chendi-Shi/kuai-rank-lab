@@ -1,0 +1,76 @@
+{
+  "config": {
+    "train_cutoff": "2022-04-22",
+    "test_cutoff": "2022-05-01",
+    "seed": 2026,
+    "dim": 32,
+    "epochs": 5,
+    "batch_size": 512,
+    "max_positive_pairs": 100000,
+    "learning_rate": 0.002,
+    "temperature": 0.1,
+    "itemcf_neighbors": 80,
+    "eval_users": 1000,
+    "recall_k": 300,
+    "output_k": 10,
+    "author_cap": 2,
+    "ranker": "results/initial/lr_s2026"
+  },
+  "dim": 32,
+  "training_positive_pairs": 100000,
+  "available_positive_pairs": 382599,
+  "snapshot_cutoff_ms": 1650556800000,
+  "curves": [
+    {
+      "epoch": 1,
+      "loss": 1.993082653617859,
+      "recall@100": 0.05308333333333333,
+      "hit@100": 0.072,
+      "ndcg@100": 0.020143505713124895
+    },
+    {
+      "epoch": 2,
+      "loss": 0.7909501445770264,
+      "recall@100": 0.06393333333333333,
+      "hit@100": 0.086,
+      "ndcg@100": 0.01881083471874233
+    },
+    {
+      "epoch": 3,
+      "loss": 0.5201577040100097,
+      "recall@100": 0.06091666666666666,
+      "hit@100": 0.086,
+      "ndcg@100": 0.01704185812194582
+    },
+    {
+      "epoch": 4,
+      "loss": 0.41330326959609986,
+      "recall@100": 0.06508333333333333,
+      "hit@100": 0.088,
+      "ndcg@100": 0.017587200729325098
+    },
+    {
+      "epoch": 5,
+      "loss": 0.34511369775772094,
+      "recall@100": 0.07455,
+      "hit@100": 0.096,
+      "ndcg@100": 0.01735506552223064
+    }
+  ],
+  "best_validation_recall@100": 0.07455,
+  "seconds": null,
+  "recovery_note": "Training completed; FAISS import failed while its download was pending. Curves recovered verbatim from logged stdout; elapsed time not recovered.",
+  "trained_files_sha256": {
+    "dual_tower.pt": "70b70d86507fe9a78d79ae5228cd9fd2012c26300c5441bf34699559772c83ac",
+    "itemcf.npz": "8f64f132a545714a484bb45f79a2f696218cec976685869fd65b31c55e400650",
+    "item_vectors.npy": "c4cddf394a86135a1fd17f680d3d8d2cd2f0ee6fb1940afcc58ea868c06952df"
+  },
+  "files": {
+    "dual_tower.pt": "70b70d86507fe9a78d79ae5228cd9fd2012c26300c5441bf34699559772c83ac",
+    "flat.faiss": "c369ea8e61ddeb551e24a5f42e94e59f3e209699dc86f5dce81bde874f4d7433",
+    "hnsw.faiss": "2a06bfc43114333eb9d6e2deba80e6aa0e5c33af40618952b58599492b8d6a0d",
+    "itemcf.npz": "8f64f132a545714a484bb45f79a2f696218cec976685869fd65b31c55e400650",
+    "item_vectors.npy": "c4cddf394a86135a1fd17f680d3d8d2cd2f0ee6fb1940afcc58ea868c06952df",
+    "training_pending.json": "07af0180f71967ea8fac4010c156bb166498327af124d0a23ca26dc33ab7f9f4"
+  }
+}

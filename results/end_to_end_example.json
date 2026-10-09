@@ -1,0 +1,126 @@
+{
+  "user_id": "10028",
+  "snapshot_ms": 1651334400000,
+  "route": "itemcf",
+  "candidate_count": 300,
+  "ranking_model_weight": 0.0,
+  "cold_user": false,
+  "ranking": [
+    {
+      "video_id": "3685",
+      "author_id": "31238",
+      "scores": {
+        "long_view": 0.15336402042277023
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "2303",
+      "author_id": "5345439",
+      "scores": {
+        "long_view": 0.16077015794919364
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "3310",
+      "author_id": "28048",
+      "scores": {
+        "long_view": 0.23719724764580236
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "4636",
+      "author_id": "8346076",
+      "scores": {
+        "long_view": 0.1405303461841419
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "2399",
+      "author_id": "7997883",
+      "scores": {
+        "long_view": 0.0881710035987612
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "6714",
+      "author_id": "5235675",
+      "scores": {
+        "long_view": 0.15726047430228665
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "1200",
+      "author_id": "1321929",
+      "scores": {
+        "long_view": 0.18513076052109867
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "597",
+      "author_id": "663099",
+      "scores": {
+        "long_view": 0.10540389606006406
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "2309",
+      "author_id": "5428499",
+      "scores": {
+        "long_view": 0.16110044680033658
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    },
+    {
+      "video_id": "3000",
+      "author_id": "2043624",
+      "scores": {
+        "long_view": 0.10783057289805369
+      },
+      "recall_sources": [
+        "itemcf"
+      ]
+    }
+  ],
+  "timing_ms": {
+    "recall": 14.261100004659966,
+    "features": 13.484399998560548,
+    "ranking_and_diversity": 32.79270000348333,
+    "total": 60.538200006703846
+  },
+  "unknown_category_rates": {
+    "user_id": 0.0,
+    "video_id": 0.01,
+    "author_id": 0.006666666666666667,
+    "tab": 0.0,
+    "video_type": 0.0,
+    "upload_type": 0.0,
+    "music_type": 0.02666666666666667,
+    "tag_first": 0.0
+  }
+}

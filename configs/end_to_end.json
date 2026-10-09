@@ -1,0 +1,17 @@
+{
+  "train_cutoff": "2022-04-22",
+  "test_cutoff": "2022-05-01",
+  "seed": 2026,
+  "dim": 32,
+  "epochs": 5,
+  "batch_size": 512,
+  "max_positive_pairs": 100000,
+  "learning_rate": 0.002,
+  "temperature": 0.1,
+  "itemcf_neighbors": 80,
+  "eval_users": 1000,
+  "recall_k": 300,
+  "output_k": 10,
+  "author_cap": 2,
+  "ranker": "results/initial/lr_s2026"
+}

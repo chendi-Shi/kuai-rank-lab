@@ -38,8 +38,8 @@ class RankModel(nn.Module):
             raise ValueError(f"Unknown model kind {kind}")
         self.kind = kind
         self.n_tasks = 1 if kind == "deepfm" else n_tasks
-        self.embeddings = nn.ModuleList([nn.Embedding(size, embedding_dim) for size in sizes])
-        self.linear_fields = nn.ModuleList([nn.Embedding(size, self.n_tasks) for size in sizes])
+        self.embeddings = nn.ModuleList([nn.Embedding(size, embedding_dim, padding_idx=0) for size in sizes])
+        self.linear_fields = nn.ModuleList([nn.Embedding(size, self.n_tasks, padding_idx=0) for size in sizes])
         self.linear_numeric = nn.Linear(n_numeric, self.n_tasks)
         for emb in self.embeddings:
             nn.init.normal_(emb.weight, std=0.01)

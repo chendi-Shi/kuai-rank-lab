@@ -14,6 +14,7 @@ from sklearn.linear_model import LogisticRegression
 from kuai_rank.data import file_sha256, save_json
 from kuai_rank.inference import Scorer
 from kuai_rank.metrics import binary_metrics
+from kuai_rank.integrity import verify_dataset
 
 
 def logit(p):
@@ -32,6 +33,7 @@ if __name__ == "__main__":
         raise ValueError("Calibration report already exists; use a new destination")
     data, run = Path(args.data), Path(args.run)
     scorer = Scorer(run)
+    verify_dataset(data, scorer.meta)
     primary = scorer.meta["tasks"][0]
     calibration = pd.read_parquet(data / "random_calibration.parquet")
     p = scorer.predict(calibration)[:, 0]

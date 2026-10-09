@@ -5,16 +5,14 @@ import pickle
 
 import numpy as np
 
-from .data import file_sha256
+from .integrity import verify_models
 
 
 class Scorer:
     def __init__(self, root):
         root = Path(root)
         self.meta = json.loads((root / "metrics.json").read_text(encoding="utf-8"))
-        for name, expected in self.meta.get("model_artifact_sha256", {}).items():
-            if file_sha256(root / name) != expected:
-                raise ValueError(f"Model artifact changed since training: {name}")
+        verify_models(root, self.meta)
         with (root / "encoder.pkl").open("rb") as f:
             self.encoder = pickle.load(f)
         kind = self.meta["model"]

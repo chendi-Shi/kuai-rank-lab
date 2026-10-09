@@ -1,0 +1,15 @@
+{
+  "runs": 1,
+  "rows": [
+    {
+      "model": "lr",
+      "seed": 2026,
+      "metrics_sha256": "1f588af3359240f789ae6c430afd87dc28c2d72d3e35963e066bbee53ed2eb4d",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 3,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": true
+    }
+  ],
+  "scope": "Local byte verification. Legacy runs lack split-byte hashes; this is explicitly reported."
+}

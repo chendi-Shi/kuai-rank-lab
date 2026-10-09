@@ -1,0 +1,132 @@
+{
+  "runs": 14,
+  "rows": [
+    {
+      "model": "deepfm_matched",
+      "seed": 2026,
+      "metrics_sha256": "6f28f179e90cb8dba3f94dd56e0734a92c2761ccedce02373a062f0a57a35eb9",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "deepfm",
+      "seed": 2026,
+      "metrics_sha256": "e05881a3b0b34e5f1e720f98663479dc9fb8e706c7bc649fbb5d3375efd2baa8",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "lightgbm",
+      "seed": 2026,
+      "metrics_sha256": "e5ae50adf9fe111018d000195935fc59aff7aeb1d9baf7c4e3fa437d64fad7bf",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "lr",
+      "seed": 2026,
+      "metrics_sha256": "be3d0495b38d6d92fc17547de48c5038b6c074b55c0469520f41b62d17c81e32",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "mmoe",
+      "seed": 2026,
+      "metrics_sha256": "a3fcdb8870c04442ccdeb9a73881bdf895ace240ff720e377655c4c346873f40",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "sharedbottom",
+      "seed": 2026,
+      "metrics_sha256": "d2a9a9e6d5e32b16239d1c4321336538be7b24e59e92d6b6c7242d109fee2d91",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "deepfm_matched",
+      "seed": 2027,
+      "metrics_sha256": "c3f52bcaf4555fba8b8a35375a6287f81b864676033c08c534d46b021a4a9c4f",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "deepfm_matched",
+      "seed": 2028,
+      "metrics_sha256": "15d983deb04444c9a7be4356c9c5e3b6aca9e53bd14182a0ca66b1d88119b815",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "deepfm",
+      "seed": 2027,
+      "metrics_sha256": "c6c918dff8679cf8d38e7284610263190ba50e69d99aa71983f0447dd73add71",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "deepfm",
+      "seed": 2028,
+      "metrics_sha256": "36b5d3a6a8142478a04071a266ce90bb1430b370823d18661d9669ef5493f28c",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "mmoe",
+      "seed": 2027,
+      "metrics_sha256": "f27132c13763b91370a238df52979d71c42fb0885cd4b41f1e3b2bef85042f7b",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "mmoe",
+      "seed": 2028,
+      "metrics_sha256": "b4c8b000c3143f97332a5236f4595903887cff785d0ac4b5cb66b445b344d402",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "sharedbottom",
+      "seed": 2027,
+      "metrics_sha256": "2b57092607284dd623b7172b1747a69cf029b73b380ddeeb188a81d546272803",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    },
+    {
+      "model": "sharedbottom",
+      "seed": 2028,
+      "metrics_sha256": "d1f178a9e338142381c78f64acc786930b74678d1e2c3c5779931f130cb8500a",
+      "model_bytes_verified": true,
+      "prediction_files_verified": 5,
+      "manifest_verified": true,
+      "prepared_split_bytes_verified": false
+    }
+  ],
+  "scope": "Local byte verification. Legacy runs lack split-byte hashes; this is explicitly reported."
+}

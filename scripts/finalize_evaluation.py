@@ -14,6 +14,7 @@ import pandas as pd
 from kuai_rank.data import file_sha256, save_json
 from kuai_rank.inference import Scorer
 from kuai_rank.metrics import evaluate
+from kuai_rank.integrity import verify_dataset, verify_predictions
 
 
 if __name__ == "__main__":
@@ -27,6 +28,8 @@ if __name__ == "__main__":
         raise ValueError("No completed validation runs")
     freeze_path = runs / "test_freeze.json"
     records = [json.loads(path.read_text(encoding="utf-8")) for path in paths]
+    for record in records:
+        verify_dataset(data, record)
     model_losses = {}
     for model in sorted({r["model"] for r in records}):
         values = [r["metrics"]["valid"][r["tasks"][0]]["logloss"] for r in records if r["model"] == model]
@@ -40,6 +43,8 @@ if __name__ == "__main__":
         freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
         if set(freeze["runs_before_test"]) != {str(path) for path in paths}:
             raise ValueError("Run set changed since test freeze")
+        if freeze["data_manifest_sha256"] != file_sha256(data / "manifest.json"):
+            raise ValueError("Prepared dataset changed after test freeze")
     else:
         if any(record["test_evaluated"] for record in records):
             raise ValueError("A run already accessed test before this freeze")
@@ -50,6 +55,7 @@ if __name__ == "__main__":
         if meta["test_evaluated"]:
             if meta.get("test_freeze_sha256") != file_sha256(freeze_path):
                 raise ValueError("Completed test belongs to a different freeze")
+            verify_predictions(path.parent, meta)
             print(f"Existing completed frozen test: {path}", flush=True)
             continue
         if file_sha256(path) != freeze["runs_before_test"][str(path)]:

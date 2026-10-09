@@ -22,6 +22,7 @@ from .data import save_json, file_sha256, day_boundary, validate_config
 from .encoding import FeatureEncoder
 from .metrics import binary_metrics, evaluate
 from .models import RankModel, capacity_matched_hidden, parameter_budget
+from .integrity import dataset_snapshot, check_files
 
 
 def seed_everything(seed, threads):
@@ -91,6 +92,7 @@ def run(data_dir, result_dir, kind, config, seed, evaluate_test=False):
     data_dir, result_dir = Path(data_dir), Path(result_dir)
     result_dir.mkdir(parents=True, exist_ok=False)
     seed_everything(seed, config["threads"])
+    prepared_hashes = dataset_snapshot(data_dir)
     started = time.perf_counter()
     full_train = pd.read_parquet(data_dir / "train.parquet")
     # Same training rows for every model and every seed: the seed controls model randomness only.
@@ -174,7 +176,8 @@ def run(data_dir, result_dir, kind, config, seed, evaluate_test=False):
         revision = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=False).stdout.strip()
     except OSError:
         revision = ""
-    source_files = ["data.py", "encoding.py", "metrics.py", "models.py", "train.py"]
+    check_files(data_dir, prepared_hashes)
+    source_files = ["data.py", "encoding.py", "metrics.py", "models.py", "train.py", "integrity.py"]
     code_fingerprints = {name: file_sha256(Path(__file__).parent / name) for name in source_files}
     summary = {"model": kind, "effective_model_kind": effective_kind,
                "matched_mmoe_parameter_target": capacity_target,
@@ -186,6 +189,7 @@ def run(data_dir, result_dir, kind, config, seed, evaluate_test=False):
                "training_event_ids_sha256": __import__("hashlib").sha256(train.event_id.to_numpy().tobytes()).hexdigest(),
                "parameters": parameters, "seconds": time.perf_counter() - started,
                "data_manifest_sha256": file_sha256(data_dir / "manifest.json"),
+               "prepared_split_sha256": prepared_hashes,
                "environment": {"python": sys.version, "platform": platform.platform(), "torch": torch.__version__,
                                "numpy": np.__version__, "pandas": pd.__version__, "lightgbm": lgb.__version__,
                                "threads": config["threads"], "device": "cpu", "git_revision": revision},

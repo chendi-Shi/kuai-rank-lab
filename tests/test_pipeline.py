@@ -157,6 +157,27 @@ def test_full_pipeline_can_recommend_to_known_and_cold_users_without_supplied_fe
     known = pipeline.recommend("2", k=2, timestamp_ms=cutoff)
     assert [row["video_id"] for row in known["ranking"]] == ["20"]
     assert pipeline.recommend("1", timestamp_ms=cutoff)["ranking"] == []
+    # Single-route optimization must preserve the original all-route result.
+    for user in ["1", "2", "cold"]:
+        routes, _ = pipeline.retrieval.routes(user, 2)
+        for route, expected in routes.items():
+            actual, _ = pipeline.retrieval.recall(user, 2, route)
+            np.testing.assert_array_equal(actual, expected)
+    # Frozen weight zero may score only selected rows, but must return exactly
+    # the former full-candidate scores, provenance and author-constrained order.
+    pipeline.rank_weight = 0
+    for user in ["2", "cold"]:
+        ids, sources = pipeline.retrieval.recall(user, 2, "fusion")
+        full_frame = pipeline.features.features(user, ids, cutoff)
+        full_scores = pipeline.ranker.predict(full_frame)
+        selected = diversify(np.arange(len(ids)), full_frame.author_id.to_numpy(), 1, 2)
+        expected = [{"video_id": str(full_frame.video_id.iloc[i]), "author_id": str(full_frame.author_id.iloc[i]),
+                     "scores": dict(zip(pipeline.ranker.meta["tasks"], map(float, full_scores[i]))),
+                     "recall_sources": sources[int(ids[i])]} for i in selected]
+        optimized = pipeline.recommend(user, k=1, timestamp_ms=cutoff)
+        assert optimized["ranking"] == expected
+        assert optimized["scored_candidates"] == 1
+        assert optimized["candidate_count"] == len(ids)
     deployment = tmp_path / "deployment.json"
     deployment.write_text(json.dumps({"snapshot": str(snapshot_dir), "retrieval": str(retrieval_dir), "ranker": str(rank_dir), "recall_k": 2}))
     from kuai_rank.recommend_api import create_app, RecommendationRequest

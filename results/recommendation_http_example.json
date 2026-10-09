@@ -3,6 +3,8 @@
   "snapshot_ms": 1651334400000,
   "route": "itemcf",
   "candidate_count": 300,
+  "scored_candidates": 10,
+  "unknown_category_rate_scope": "returned_videos",
   "ranking_model_weight": 0.0,
   "cold_user": false,
   "ranking": [
@@ -108,19 +110,19 @@
     }
   ],
   "timing_ms": {
-    "recall": 20.481800005654804,
-    "features": 40.14529999403749,
-    "ranking_and_diversity": 459.5384999993257,
-    "total": 520.165599999018
+    "recall": 2.6667000056477264,
+    "features": 11.052899993956089,
+    "ranking_and_diversity": 125.77579999924637,
+    "total": 139.4953999988502
   },
   "unknown_category_rates": {
     "user_id": 0.0,
-    "video_id": 0.05333333333333334,
-    "author_id": 0.05,
+    "video_id": 0.0,
+    "author_id": 0.0,
     "tab": 0.0,
     "video_type": 0.0,
     "upload_type": 0.0,
-    "music_type": 0.04,
+    "music_type": 0.0,
     "tag_first": 0.0
   }
 }

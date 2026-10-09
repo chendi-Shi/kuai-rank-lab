@@ -139,9 +139,23 @@ class RecallEngine:
         return lists, sources
 
     def recall(self, user, k=300, route="fusion"):
-        lists, sources = self.routes(user, k)
-        if route not in lists:
+        if route == "fusion":
+            lists, sources = self.routes(user, k)
+            return lists[route], sources
+        if route not in {"popular", "itemcf", "dual_tower"}:
             raise ValueError("Unknown recall route")
-        ids = lists[route]
-        provenance = sources if route == "fusion" else {int(i): [route] for i in ids}
-        return ids, provenance
+        seen = self.snapshot.seen_indices(user)
+        positives = self.snapshot.positive_indices(user)
+        if route == "popular" or not len(positives) or (route == "dual_tower" and str(user) not in self.user_index):
+            ids = top_indices(self.snapshot.popularity, k, seen)
+        elif route == "itemcf":
+            scores = np.asarray(self.cf[positives].sum(axis=0)).ravel()
+            ids = top_indices(scores, k, seen)
+        else:
+            import faiss
+            faiss.omp_set_num_threads(1)
+            limit = min(self.index.ntotal, k + len(seen))
+            _, found = self.index.search(self.query_vector(user), limit)
+            seen_set = set(seen.tolist())
+            ids = np.asarray([i for i in found[0] if i >= 0 and i not in seen_set][:k], dtype=np.int64)
+        return ids, {int(i): [route] for i in ids}

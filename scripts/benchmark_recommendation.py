@@ -27,9 +27,11 @@ if __name__ == "__main__":
     parser.add_argument("--requests", type=int, default=200)
     parser.add_argument("--concurrency", type=int, default=4)
     parser.add_argument("--out", default="results/recommendation_benchmark.json")
+    parser.add_argument("--example", default="results/end_to_end_example.json")
+    parser.add_argument("--snapshot", default="artifacts/end_to_end/test_snapshot")
     args = parser.parse_args()
     urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler({})))
-    example = json.loads(Path("results/end_to_end_example.json").read_text())
+    example = json.loads(Path(args.example).read_text())
     user = example["user_id"]
     _, online_example = request(args.url, {"user_id": user})
     assert online_example["ranking"] == example["ranking"], "HTTP output differs from saved offline pipeline example"
@@ -39,7 +41,7 @@ if __name__ == "__main__":
         request(args.url, {"user_id": user})
     # Include several actual users plus a missing-ID cold-start request.
     import pandas as pd
-    users = pd.read_parquet("artifacts/end_to_end/test_snapshot/users.parquet").user_id.astype(str).tolist()[:20]
+    users = pd.read_parquet(Path(args.snapshot) / "users.parquet").user_id.astype(str).tolist()[:20]
     users.append("cold-user-not-in-training")
     payloads = [{"user_id": users[i % len(users)]} for i in range(args.requests)]
     started = time.perf_counter()
@@ -68,5 +70,5 @@ if __name__ == "__main__":
               "offline_http_ranking_identical": True, "demo_page_available": True,
               "stale_snapshot_rejected": True, "scope": "Local CPU historical-snapshot full pipeline; no external database/network feature store."}
     save_json(args.out, report)
-    save_json("results/recommendation_http_example.json", results[0][1])
+    save_json(Path(args.out).parent / "recommendation_http_example.json", results[0][1])
     print(json.dumps(report, indent=2))

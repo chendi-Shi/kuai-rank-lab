@@ -12,7 +12,7 @@
 
 - 验证集选择 LR，普通测试 AUC **0.7514**；MMoE 在不同 seed 下的收益不稳定，容量匹配对照亦未证明稳定优势。
 - LightGBM 的随机曝光测试 LogLoss 经独立 Platt 校准从 **0.4833 降至 0.2787**，优于平均正例率常数基线 **0.2960**；排序与 AUC 不变。
-- 真实 24 候选、4 并发本机 CPU 压测：HTTP p95 **123 ms**，候选编码诊断及评分 p95 **30 ms**；接口概率与离线输出完全一致。
+- 旧版评分接口的 24 候选、4 并发本机 CPU 压测：HTTP p95 **123 ms**，候选编码诊断及评分 p95 **30 ms**；该口径只包含评分，完整推荐链路性能另见端到端报告。
 
 查看 [实验报告](docs/experiment_report.md)、[自动指标表](results/comparison.html) 和 [简历条目与面试准备](docs/resume.md)。数据、训练模型和逐行预测已保留本机，Git 不包含这些大文件。
 
@@ -47,7 +47,6 @@
 
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -e ".[dev,retrieval]"
-.\.venv\Scripts\python.exe scripts/run_end_to_end.py
 $env:OMP_NUM_THREADS = "1"
 $env:MKL_NUM_THREADS = "1"
 .\.venv\Scripts\python.exe -m uvicorn kuai_rank.recommend_api:create_app --factory --host 127.0.0.1 --port 8766
@@ -61,14 +60,25 @@ $env:MKL_NUM_THREADS = "1"
 
 产物位于 `artifacts/end_to_end`，汇总报告位于 `results/end_to_end.json`。所有指标依脚本生成；完成报告不覆盖，未完成索引阶段可恢复已训练权重。
 
+本机已保留冻结实验产物，可直接启动服务。原离线评估代码对应提交 `93830e6`；后续优化只减少服务中的无用计算，已有冻结清单仍指向原版本。当前代码重新做实验时，请使用下方独立配置及报告路径；不要覆盖仓库的已报告指标，或绕过旧冻结清单的源代码检查。
+
 从 GitHub 克隆后，先按下文复现精排到 `artifacts/reproduction`，再生成独立配置指向本机模型：
 
 ```powershell
 $pipelineConfig = Get-Content configs/end_to_end.json -Raw | ConvertFrom-Json
 $pipelineConfig.ranker = "artifacts/reproduction/lr_s2026"
 $pipelineConfig | ConvertTo-Json -Depth 10 | Set-Content artifacts/pipeline-local.json -Encoding utf8
-.\.venv\Scripts\python.exe scripts/run_end_to_end.py --config artifacts/pipeline-local.json --report artifacts/pipeline-report.json
+.\.venv\Scripts\python.exe scripts/run_end_to_end.py --config artifacts/pipeline-local.json --out artifacts/pipeline-local --report artifacts/pipeline-local-report/report.json
 ```
+
+使用独立输出目录后，部署配置也在该目录，启动时设置对应路径：
+
+```powershell
+$env:KUAI_DEPLOYMENT = "artifacts/pipeline-local/deployment.json"
+.\.venv\Scripts\python.exe -m uvicorn kuai_rank.recommend_api:create_app --factory --host 127.0.0.1 --port 8766
+```
+
+对应的独立复现压测：`python scripts/benchmark_recommendation.py --example artifacts/pipeline-local-report/end_to_end_example.json --snapshot artifacts/pipeline-local/test_snapshot --out artifacts/pipeline-local-report/recommendation_benchmark.json`。
 
 模型、向量、索引和特征快照都不提交 Git，复现需自行生成。`results/end_to_end.json` 是本机原实验记录，并不代表克隆后已有可加载模型。
 

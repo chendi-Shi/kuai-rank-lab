@@ -46,6 +46,13 @@ class RecommendationPipeline:
     def recommend(self, user, k=10, tab="0", timestamp_ms=None, route=None):
         start = time.perf_counter()
         ids, sources = self.retrieval.recall(user, self.recall_k, route or self.route)
+        candidate_count = len(ids)
+        # With a frozen zero model weight, order is known before scoring.
+        # Keep the exact author constraint and score only returned videos.
+        if self.rank_weight == 0 and len(ids):
+            authors = self.features.catalog.author_id.to_numpy()[ids]
+            selected = diversify(np.arange(len(ids)), authors, k, self.author_cap)
+            ids = ids[selected]
         recalled = time.perf_counter()
         frame = self.features.features(user, ids, timestamp_ms, tab)
         featured = time.perf_counter()
@@ -63,7 +70,9 @@ class RecommendationPipeline:
         selected = diversify(order, frame.author_id.to_numpy(), k, self.author_cap)
         finished = time.perf_counter()
         return {"user_id": str(user), "snapshot_ms": self.features.meta["cutoff_ms"],
-                "route": route or self.route, "candidate_count": len(ids),
+                "route": route or self.route, "candidate_count": candidate_count,
+                "scored_candidates": len(ids),
+                "unknown_category_rate_scope": "returned_videos" if self.rank_weight == 0 else "all_candidates",
                 "ranking_model_weight": self.rank_weight,
                 "cold_user": str(user) not in self.retrieval.user_index,
                 "ranking": [{"video_id": str(frame.video_id.iloc[i]), "author_id": str(frame.author_id.iloc[i]),
